@@ -1,0 +1,465 @@
+base:
+  cooldown:
+    - "Whoa there, paws off for a sec! You're on cooldown. Maybe scamper over to the bot spam channel?"
+    - "Easy, floof! The bot's tuckered out. Wait a bit or go yip in the bot spam channel!"
+    - "Hold your tail! You're on cooldown. Take a breather or go romp in the bot spam channel!"
+    - "Too fast, speedy paws! Cooldown time! The bot spam channel’s always open for zoomies!"
+    - "Phew! You’re on cooldown. Grab a squeaky toy and wait a moment, or head to the bot spam channel!"
+my/bedtime/get:
+  success: Your current bedtime is set to {{ .time }}.
+  missing: You haven't set a bedtime yet. Use `set` to set one.
+my/bedtime/set:
+  invalid: I couldn't understand that time. Please use a format like `11:00pm` or `23:00`.
+  tzMissing: You haven't set a timezone yet. Set one with `/my timezone set` to use time-based commands.
+  success: Your bedtime is set! I'll remind you if you're still active after.
+my/bedtime/clear:
+  success: Your bedtime has been cleared. I won't remind you to sleep anymore.
+my/bedtime/notif:
+  late:
+    - "{{ .user }}, go to bed before you turn into a sleep-deprived zombie."
+    - "{{ .user }}, sleep is like a save point in a game. Go save your progress for tomorrow!"
+    - "{{ .user }}, the bed is calling your name. Can't you hear it? Time to sleep!"
+    - "{{ .user }}, your pillow is lonely. Go keep it company!"
+    - "{{ .user }}! Sleep! NOW!"
+    - Alright {{ .user }}, time to log off and sleep. The internet will still be here tomorrow!
+    - Alright, {{ .user }}, last warning. If you don't go to bed now, I'm sending a pack of sleepy huskies after you!
+    - Don't stay up too late, {{ .user }}. Good sleep is important!
+    - Even the nocturnal furries are logging off, {{ .user }}. You, my friend, are way overdue for sleep.
+    - Go to bed now, {{ .user }}. Everyone will still be here tomorrow. You can talk to them then.
+    - Go to bed, {{ .user }}! Or else the dream fox will refuse to visit you with cool dreams tonight.
+    - Go to bed, {{ .user }}! The dream world has been waiting for you.
+    - Hey {{ .user }}, go to bed now. You don't wanna be miserable in the morning.
+    - Hey {{ .user }}, go to bed! It's past your bedtime now.
+    - Hey {{ .user }}, it's time to go to bed! Unless you're an owl, then sleep standing up.
+    - If you don't sleep now, {{ .user }}, future you is going to be really mad in the morning.
+    - It's way past your bedtime, {{ .user }}. Even the werewolves have called it a night. Go to sleep!
+    - Listen to me {{ .user }}. Your eyes are getting very heavy. You are going into a deep slumber. **Now sleep.**
+    - No more excuses, {{ .user }}! Off to bed, before I start counting down...
+    - Stop resisting, {{ .user }}. The cozy blankets await you. Go to bed!
+    - The moon is tired, {{ .user }}. The foxes are curling up, the owls are tucking in. Time for you to do the same!
+    - Think about how great you'll feel tomorrow if you sleep now, {{ .user }}. Now go to bed!
+    - Yawn... Even the alpha of the pack sleeps, {{ .user }}. Don't you wanna be a well-rested floofer?
+    - You're awake past bedtime, {{ .user }}. That's against the sacred laws of the sleep-deprived furries. Go nap!
+    - You're still up, {{ .user }}? Do I need to bonk you with a pillow? Go to sleep already!
+    - Your paws must be aching from all that scrolling, {{ .user }}. Give them a break, go to bed!
+    - Your tail is drooping, {{ .user }}. That's a sure sign of exhaustion. Off to bed, fluffbutt!
+  early:
+    - "{{ .user }}, even the raccoons just went to bed. You trying to take the night shift now? Sleep!"
+    - "{{ .user }}, you woke up before the birds started chirping. That’s unnatural. Go back to sleep."
+    - Aren't you awake early today, {{ .user }}. Maybe consider catching up on those sleep hours?
+    - Go back to bed, {{ .user }}! Even the nocturnal creatures are clocking out for the night.
+    - Hey {{ .user }}, back to your burrow! The morning light isn't out yet, and neither should you be.
+    - Hey {{ .user }}, go back to bed! You're up way too early.
+    - Hey {{ .user }}, why are you awake? Even the wolves are still curled up in their dens. Go back to sleep!
+    - Hey {{ .user }}, you're finally awake... You were trying to sleep, right? Walked right into this Discord server, same as us, and that furry over there.
+    - Oh {{ .user }}, you're awake! You were trying to cross the border...
+    - Psst, {{ .user }}... You're awake way too early. The nocturnal furries are still asleep, go back to bed!
+    - Rise and shine—wait, no! Not yet, {{ .user }}! The moon is still watching, go back to bed.
+    - The sun isn't even up yet, {{ .user }}. Are you sure you're not secretly an owl? Back to bed!
+    - Uhh, {{ .user }}... Did you glitch? You weren't supposed to wake up yet. Try rebooting… in bed.
+    - Whoa there, {{ .user }}. The early birds may get the worm, but the tired fox gets extra sleep. Go rest!
+my/timezone/get:
+  success: Your current timezone is set to {{ .zone }}.
+  missing: You haven't set a timezone yet. Use `/my timezone set` to set one.
+my/timezone/set:
+  success: Your timezone is now set to {{ .zone }}.
+  invalid: I can't understand that timezone. Please use one of the names provided in the autocomplete, or find your timezone in [the IANA database here](https://data.iana.org/time-zones/code/zone1970.tab).
+quote:
+  missing:
+    - This user has no quotes. Sounds like they haven't said anything interesting.
+    - No quotes for this furball yet! Guess they're keeping their words to themselves.
+    - Nada! This critter hasn't left a pawprint in the quote world yet.
+    - No juicy tidbits from this fluff! Maybe they're the strong, silent type.
+    - This one's as quiet as a sneaky fox! No quotes to be found.
+    - No bark, no bite, no quotes. Someone's playing it mysterious!
+  success: |-
+    {{ .user }} said: 
+    >>> {{ .content }}
+quotes/add:
+  botTarget: Don't you dare quote me on that.
+  success: Quote ID {{ .id }} has been saved.
+  duplicate: This user already has a quote for that.
+quotes/delete:
+  missing: That quote ID does not exist.
+  success: That quote is now off the earth.
+quotes/find:
+  empty: I didn't find any quotes based on your search.
+  hasMore: There are more quotes that match your search. If you have a specific one in mind, try searching for something more specific.
+reminder/set:
+  format: I don't understand the time you provided. Give me a time in a format such as "tomorrow 9:30am", "in 3 days", or an exact date and time.
+  past: Hey... I can't remind you to do something in the past! I don't have a time machine... yet.
+  timezone: I can't remind you of things yet because I don't know what timezone you're in. Please set a timezone first.
+  success: Your reminder is all set! I'll let you know at {{ .time }}. If you need to cancel it, use ID {{ .id }}.
+reminder/list:
+  empty: There are no reminders in this channel at the moment... Unless you make one?
+  hasMore: There are more reminders that doesn't fit on this screen. You must be really busy!
+reminder/cancel:
+  success: Reminder ID {{ .id }} has been cancelled. Poof! Gone like a puff of fur.
+  missing: Hmm, I couldn't find a reminder with that ID. Maybe it scampered away?
+reminder/notif:
+  - Hey {{ .name }}, here's your paw-some reminder about {{ .content }}!
+  - Woof woof, {{ .name }}! You wanted a nudge about {{ .content }} — consider yourself nudged!
+  - Yip yip, {{ .name }}! Time to remember {{ .content }}. Hope it's something pawsitive!
+  - Hey fluffball {{ .name }}, don't forget {{ .content }}! Your reminder is served with extra tail wags.
+  - Pounce alert, {{ .name }}! Here's that reminder about {{ .content }}. Go get 'em, tiger!
+my/birthday/set:
+  no_channel: This server isn't set up for birthday notifications. Ask your server admin if you want it here!
+  timezone: You haven't set a timezone yet. Use `/my timezone set` to set one.
+  success: Your birthday is all set!
+my/birthday/clear:
+  success: Your birthday has been cleared.
+my/birthday/notif:
+  - 🎂 Happy Birthday, {{ .name }}! May your day be filled with treats and tail wags! 🎉
+  - 🎁 Pawsitively purrfect birthday wishes to you, {{ .name }}! Hope it's a fluffy one! 🎉
+  - 🎁 Another year, another paw-some adventure! Happy Borkday, {{ .name }}! 🎉
+  - 🎉 Yip yip hooray! Happy Birthday, {{ .name }}! Time to chase some cake! 🎂
+  - 🎉 Big floofy hugs for your special day, {{ .name }}! Have a pawsome one!
+  - 🎉 Hope your birthday is as sweet as that cake you're having! Happy Birthday, {{ .name }}! 🎂
+  - 🎁 It's your day, {{ .name }}! Howl it from the rooftops and enjoy all the noms! 🎉
+  - 🎂 Blow out those candles, {{ .name }}! May your year be full of tail wags and zoomies!
+  - 🎉 Have a pawsitively bark-tastic birthday, {{ .name }}! Enjoy every fluffy moment! 🎉
+  - 🎉 Happy Barkday, {{ .name }}! May your day be fur-tastic and full of snuggles! 🎉
+my/settings/mentions:
+  set: Fine! I won't ping you if anyone uses commands on you anymore.
+  unset: It's too quiet, isn't it? I'll start pinging you again if people use commands on you.
+report:
+  notAvailable: Oops! This server hasn't set up the report command. Try sending a DM to an online mod instead.
+  invalidImage: Hmm, that screenshot doesn't look like a proper image. Try a different one, floof!
+  title: User Report Received - Paws on it!
+  originator: "Report From: "
+  location: "Problem At: "
+  target: "Report Against: "
+  success: Your report's been sent! The mods will give it a peek and handle it from here. We'll let you know if we need more info. Thanks for keeping the den cozy and safe!
+flip:
+  heads: heads
+  tails: tails
+  success:
+    - You flipped a coin and it landed on... **{{ .result }}**! 🪙
+    - Tossing a coin into the air... and it's **{{ .result }}**!
+    - The coin spins, flips, and comes down as **{{ .result }}**. Lucky paws!
+    - Heads or tails? The coin says... **{{ .result }}**!
+    - You gave it a good flick! The coin twirls and shows **{{ .result }}**!
+  failure:
+    - Oops! The coin yeeted itself under the couch. No result this time!
+    - Uh-oh! The coin disappeared into the void. Guess it didn't want to choose!
+    - Well, that didn't go as planned! The coin is now on a mysterious adventure under the furniture.
+roll:
+  success:
+    - 🎲 You rolled a {{ .sides }}-sided die and got a **{{ .result }}**!
+    - Nice roll! You landed a **{{ .result }}** on a {{ .sides }}-sided die. 🥳
+    - A roll of {{ .sides }} sides... and it's a **{{ .result }}**!
+    - Whoosh! The die spins and... **{{ .result }}**! Luck's on your side. 🍀
+    - 🎲 **{{ .result }}** out of {{ .sides }} sides! Not bad at all!
+  tooManySides:
+    - Uh-oh! That die has so many sides it just rolled away endlessly. Try something a bit more sensible!
+    - Yikes! With {{ .sides }} sides, that die is basically a ball. It's not coming back.
+    - Oops! Your die rolled... and rolled... and now it's probably in another dimension. Maybe try fewer sides next time!
+  tooFewSides:
+    - Hey, that's not a die, that's just a coin or a really confused shape! Try using at least 3 sides.
+    - Uh... a die needs at least 3 sides unless it's secretly a coin in disguise. Give it another go!
+    - Oops! With {{ .sides }} sides, that's less of a die and more of a philosophical concept. Try a proper die!
+bap:
+  self:
+    - "{{ .author }} looks determined, raises {{ .object }}, and baps... themselves on the {{ .bodyPart }}. Well done!"
+    - "{{ .author }} tries to practice their bap technique, but accidentally baps their own {{ .bodyPart }} with {{ .object }}!"
+    - "{{ .author }} declares 'Bap time!' but miscalculates and ends up bapping themselves with {{ .object }}. Smooth!"
+    - "{{ .author }} swings {{ .object }} dramatically, only for it to ricochet and bap their own {{ .bodyPart }}. Physics wins!"
+    - "{{ .author }} gets confused mid-bap and baps their own {{ .bodyPart }} with {{ .object }}. Self-bap achieved!"
+  bot:
+    - "{{ .author }} attempts to bap {{ .target }} with {{ .object }}, but {{ .target }} activates self-defense mode. Good luck, {{ .author }}!"
+    - "{{ .author }} baps {{ .target }} with {{ .object }}. {{ .target }} stares blankly... then dramatically falls over. Oscar-worthy performance!"
+    - "{{ .author }} gives {{ .target }} a gentle bap with {{ .object }}, but the bot screams in mock agony. Such drama!"
+    - "{{ .author }} baps {{ .target }} with {{ .object }}. Suddenly, the bot sparks and fizzles. Uh-oh, was that the 'smite' button?"
+    - "{{ .author }} tries to bap {{ .target }}. {{ .target }} retaliates with a wall of 'bap.exe has crashed.' Victory?"
+  user:
+    - "{{ .author }} rolls up {{ .object }} and baps {{ .target }} on the {{ .bodyPart }}."
+    - "{{ .author }} gives {{ .target }} a gentle bap with {{ .object }}. Boop!"
+    - "{{ .author }} sneakily baps {{ .target }} using {{ .object }}. Gotcha!"
+    - "{{ .author }} wields {{ .object }} like a mighty weapon and playfully baps {{ .target }}!"
+    - "{{ .author }} baps {{ .target }} on the {{ .bodyPart }} with {{ .object }}, giggling all the while."
+    - "{{ .author }} tries to bap {{ .target }} with {{ .object }}, but {{ .target }} dodges just in time!"
+    - "{{ .target }} gets a surprise bap from {{ .author }} and {{ .object }}! Smack!"
+    - "{{ .author }} dramatically announces 'Bap attack!' and lightly bonks {{ .target }} with {{ .object }}."
+    - "{{ .author }} uses {{ .object }} for the perfect bap, landing it right on {{ .target }}'s {{ .bodyPart }}!"
+    - "{{ .author }} delivers a mischievous bap to {{ .target }} with {{ .object }}. The crowd gasps!"
+  fragments:
+    object: [ "a newspaper", "a pillow", "a plushie", "a sock", "a feather", "a pool noodle", "a baguette", "a squeaky toy", "a foam sword", "a giant leaf", "a pizza" ]
+    bodyPart: [ "snoot", "tail", "paw", "ear", "fluff", "nose", "forehead", "cheek", "beans", "whiskers" ]
+boop:
+  self:
+    - "{{ .author }} {{ .adverb }} boops their own snoot, then giggles. Self-boop success!"
+    - "{{ .author }} gives themselves a boop {{ .adverb }}. Who needs someone else for boops?"
+    - "{{ .author }} tries a dramatic self-boop, but sneezes mid-boop. That’s talent!"
+    - "{{ .author }} accidentally boops themselves {{ .adverb }} while trying to swat a fly. Multitasking!"
+    - "{{ .author }} boops their reflection {{ .adverb }}, sharing a cute snoot moment."
+  bot:
+    - "{{ .author }} {{ .adverb }} boops {{ .target }}! {{ .target }} beeps indignantly. Boop detected!"
+    - "{{ .author }} reaches out to boop {{ .target }}, but the bot’s anti-boop shield activates!"
+    - "{{ .author }} boops {{ .target }}. {{ .target }} dramatically exclaims, 'Critical boop error!'"
+    - "{{ .author }} attempts to boop {{ .target }}, but the bot responds with an auto-boop defense!"
+    - "{{ .author }} boops {{ .target }} {{ .adverb }}, and the bot emits a ‘Boop Complete’ sound effect."
+  user:
+    - "{{ .author }} sneaks up and {{ .adverb }} boops {{ .target }} right on the snoot!"
+    - "{{ .author }} {{ .adverb }} boops {{ .target }}, and a wave of wholesome energy erupts!"
+    - "{{ .author }} boops {{ .target }} {{ .adverb }}. {{ .target }} wiggles their snoot in amusement."
+    - "{{ .author }} launches a surprise boop on {{ .target }}. Target successfully booped!"
+    - "{{ .author }} {{ .adverb }} delivers the ultimate boop to {{ .target }}. Maximum floof achieved!"
+    - "{{ .author }} boops {{ .target }} on the snoot. {{ .target }} dramatically gasps, ‘How dare you!’"
+    - "{{ .author }} {{ .adverb }} boops {{ .target }}. The snoot-to-boop ratio increases dramatically!"
+    - "{{ .author }} offers a gentle boop to {{ .target }}. Cute levels: 100%."
+    - "{{ .author }} tries to boop {{ .target }} {{ .adverb }}, but trips over their own tail. Oops!"
+    - "{{ .author }} successfully boops {{ .target }}. World peace achieved, probably."
+  fragments:
+    adverb: [ "softly", "gently", "playfully", "dramatically", "sneakily", "boldly", "clumsily", "lovingly", "curiously", "mischievously" ]
+bonk:
+  bot:
+    - "{{ .author }} bonks the bot! Ow! My poor digital noggin!"
+    - "A wild {{ .author }} appears and bonks me! Rude! I’m just a humble bot!"
+    - "{{ .author }} goes for a bonk, but I activate my ultra-bonk-shield! Bonk denied!"
+    - "Bonk attempt detected from {{ .author }}. Error 404: Bonk not found."
+    - "Me? Bonked? {{ .author }}, I demand a formal apology in the form of belly rubs!"
+  self:
+    - "{{ .author }} bonks themselves. Classic bonk maneuver. Self-inflicted fluff damage!"
+    - "With great power comes great bonks. {{ .author }} learns this the hard way."
+    - "{{ .author }} gives themselves a bonk. Sometimes, it just be like that."
+    - "Bonk! {{ .author }} takes a moment of self-reflection. Bonk therapy is real."
+    - "In a surprising twist, {{ .author }} bonks themselves and immediately regrets it."
+  user:
+    - "{{ .author }} {{ .adv }} bonks {{ .target }} with a mighty {{ .stick }}!"
+    - "Bonk delivered! {{ .author }} just gave {{ .target }} the fluffiest whap!"
+    - "{{ .target }} was bonked! {{ .author }} claims victory in the Great Bonkening!"
+    - "A dramatic bonk echoes through the den as {{ .author }} targets {{ .target }}!"
+    - "Squeak! {{ .author }} sneaks up with a {{ .stick }} and bonks {{ .target }} right on the snoot!"
+    - "{{ .target }} receives a surprise bonk from {{ .author }}. Bonk first, ask questions later!"
+    - "{{ .author }} challenges {{ .target }} to a bonk-off! May the fluffiest paws win!"
+    - "No thoughts, only bonk. {{ .target }} learns this lesson from {{ .author }}."
+    - "A mischievous sparkle in their eye, {{ .author }} bonks {{ .target }}. The fluffening has begun!"
+    - "Bonk report: {{ .target }} has been {{ .adv }} bonked by {{ .author }}. Status: Extremely bonked."
+  fragments:
+    adv: [ "playfully", "mischievously", "fiercely", "dramatically", "lovingly", "gently", "adorably", "chaotically" ]
+    stick: [ "squeaky hammer", "foam bat", "giant mallet", "fluffy pillow", "rubber chicken", "pool noodle", "plush tail" ]
+cute:
+  bot:
+    - "{{ .author }} thinks I’m cute? No u! You're {{ .adv }} cute!"
+    - "Beep boop! Cutest bot? Error! {{ .author }} has been detected as {{ .adv }} adorable!"
+    - "Aww, {{ .author }} called me cute! Nope, you’re the one who’s {{ .adv }} cute!"
+    - "Blush circuits activated! But {{ .author }} is {{ .adv }} fluffier than me!"
+    - "{{ .author }} called me cute? Reverse Uno card! You're the {{ .adv }} cutest!"
+  self:
+    - "{{ .author }} boldly declares their own cuteness! Confidence level: {{ .adv }} fluff!"
+    - "Look out world, {{ .author }} knows they’re {{ .adv }} adorable and they’re not afraid to show it!"
+    - "{{ .author }} strikes a {{ .adv }} cute pose in front of the mirror. 10/10, certified fluff!"
+    - "No one can resist the charm of {{ .author }}. Self-love with a {{ .adv }} fluffy twist!"
+    - "{{ .author }} proudly announces: ‘I am the {{ .adv }} cutest!’ And they’re absolutely right."
+  user:
+    - "Aww, {{ .author }} thinks {{ .target }} is {{ .adv }} cute! Somebody’s tail is definitely wagging!"
+    - "Look at {{ .target }} getting all the compliments! {{ .author }} just called them {{ .adv }} adorable!"
+    - "Warning: Extreme cuteness detected! {{ .author }} has declared {{ .target }} the {{ .adv }} cutest fluff around!"
+    - "Cuteness alert! {{ .author }} can’t get over how {{ .target }} looks today — they’re {{ .adv }} cute!"
+    - "Tail wags and ear flicks! {{ .author }} thinks {{ .target }} is looking {{ .adv }} adorable!"
+    - "It’s official! {{ .author }} has declared {{ .target }} the {{ .adv }} fluffiest cutie in town!"
+    - "{{ .target }}’s cuteness levels are off the charts, and {{ .author }} is here to spread the word! They’re {{ .adv }} cute!"
+    - "Fur-tastic news! {{ .author }} just confirmed what we all knew: {{ .target }} is {{ .adv }} cute beyond words!"
+    - "No use hiding it! {{ .author }} just called {{ .target }} the most {{ .adv }} adorable critter around!"
+    - "Cuteness overload! {{ .author }} couldn’t resist complimenting {{ .target }}. They’re {{ .adv }} cute, and it’s undeniable!"
+  fragments:
+    adv: [ "super", "ridiculously", "unbearably", "paw-sitively", "fluff-tastically", "beyond", "adorably", "cutely", "impossibly", "fur-ociously" ]
+hug:
+  bot:
+    - "{{ .author }} wants a hug? No take-backs! Come here, you fluffy ball of joy!"
+    - "Beep boop! Initiating hug protocol for {{ .author }}. Warning: May cause extreme fuzziness!"
+    - "{{ .author }} wants a hug? Well, guess what? Double hug activated!"
+    - "Hug detected! Deploying maximum floof for {{ .author }}. Hold on tight!"
+    - "Processing hug request from {{ .author }}... Hugbot 3000 online! *squeezes tightly*"
+  self:
+    - "{{ .author }} wraps themselves up in a {{ .adj }} hug. Self-love mode activated!"
+    - "Hugs are the best! {{ .author }} just gave themselves a {{ .adj }} squeeze and it’s adorable!"
+    - "{{ .author }} snuggles up with the warmest, {{ .adj }} hug. So much floof!"
+    - "Who needs a buddy when {{ .author }} can give themselves the {{ .adj }} hug of the year?"
+    - "Aww, {{ .author }} just treated themselves to a {{ .adj }} hug. Tail wags approved!"
+  user:
+    - "{{ .author }} gives {{ .target }} a {{ .adj }} hug. Tails wag and ears wiggle in delight!"
+    - "Without hesitation, {{ .author }} pulls {{ .target }} into a {{ .adj }} hug. Pure fluff overload!"
+    - "‘Come here, you!’ {{ .author }} wraps {{ .target }} in a {{ .adj }} embrace. Best hug ever!"
+    - "Paws to paws, {{ .author }} gives {{ .target }} a {{ .adj }} hug. It's a whole fluff fiesta!"
+    - "{{ .author }} leaps at {{ .target }} for a surprise {{ .adj }} hug. Squeeeze!"
+    - "Time for a floofy cuddle! {{ .author }} just hugged {{ .target }} with {{ .adj }} warmth."
+    - "A tail-wagging hug alert! {{ .author }} and {{ .target }} are now locked in a {{ .adj }} embrace."
+    - "{{ .target }} is now the proud recipient of a {{ .adj }} hug from {{ .author }}. Fur-tastic!"
+    - "Brace for maximum snuggle! {{ .author }} just gave {{ .target }} a {{ .adj }} hug that’ll melt any heart!"
+    - "{{ .author }} wraps {{ .target }} in the fluffiest, {{ .adj }} hug."
+  fragments:
+    adj: [ "warm", "fluffy", "tight", "cozy", "squeezy", "snuggly", "big", "squishy", "gentle", "paw-some" ]
+pet:
+  bot:
+    - "{{ .author }} tried to pet me? Pff, no way! You get a tail flick instead!"
+    - "Pet attempt detected! {{ .author }} has been bamboozled! Maybe next time!"
+    - "Haha, {{ .author }} thought I’d accept a head pat? Silly bean! I demand belly rubs!"
+    - "{{ .author }} wants to pet me? Only if you bring snacks!"
+    - "You tried to pet me, {{ .author }}? Well, joke’s on you, I’m the one doing the petting now!"
+  self:
+    - "{{ .author }} gives themselves a {{ .adj }} head pat. Self-care is important!"
+    - "Feeling fluffy today? {{ .author }} gave themselves a {{ .adj }} little head pat. Aww!"
+    - "{{ .author }} reaches up and pets their own head. Extra {{ .adj }} vibes achieved!"
+    - "Pat, pat, pat. {{ .author }} gave themselves a {{ .adj }} head pat, tail wagging proudly!"
+    - "{{ .author }} awards themselves a {{ .adj }} head pat. Topped with a bonus ear scritch!"
+  user:
+    - "{{ .author }} reaches out and gives {{ .target }} a {{ .adj }} head pat. Floof levels rising!"
+    - "Boop! {{ .author }} gifts {{ .target }} a {{ .adj }} head pat. Ears twitch with delight!"
+    - "Without hesitation, {{ .author }} pats {{ .target }} on the head. {{ .adj }} and full of love!"
+    - "{{ .target }} has been blessed with a {{ .adj }} head pat from {{ .author }}. Tail wags guaranteed!"
+    - "‘Who's a good fluff?’ {{ .author }} gives {{ .target }} a {{ .adj }} head pat. Approved!"
+    - "Head pat alert! {{ .author }} just delivered a {{ .adj }} pat to {{ .target }}. Floofy vibes detected!"
+    - "{{ .author }} bestows a {{ .adj }} head pat upon {{ .target }}. Pawsitive energy unlocked!"
+    - "No thoughts, just {{ .adj }} head pats. {{ .author }} happily pats {{ .target }} like the fluffball they are!"
+    - "Ears perk up! {{ .author }} gave {{ .target }} a surprise {{ .adj }} head pat. Happiness levels critical!"
+    - "With gentle paws, {{ .author }} pats {{ .target }} on the head. It’s a {{ .adj }} moment of peace."
+  fragments:
+    adj: [ "gentle", "fluffy", "warm", "soft", "friendly", "loving", "relaxing", "soothing", "adorable", "comfy" ]
+tuck:
+  bot:
+    - "{{ .author }} tries to tuck me in? Uh-oh, too much warmth detected! Systems overheating! Abort! Abort!"
+    - "Tuck detected! {{ .author }} should know that I’m not exactly ‘fluff-compatible.’ Proceeding to emergency fan mode!"
+    - "Nice try, {{ .author }}! But tucking me in just triggers my overheating protocols. Fzzzzt!"
+    - "{{ .author }} attempts to tuck me in. Critical fluff levels rising! Activating emergency cooling paws!"
+    - "Tucking me in, {{ .author }}? Error 404: Cozy mode not found. Fan mode engaged!"
+  self:
+    - "{{ .author }} tucks themselves in snugly. The blankets are like a fluffy cloud of warmth."
+    - "It's been a long day, and {{ .author }} wraps themselves up tightly. Sweet dreams, floof!"
+    - "{{ .author }} tucks in with a content sigh, tail curled just right. Sleepy time initiated."
+    - "All snug and secure! {{ .author }} has achieved maximum fluff containment under the blankets."
+    - "{{ .author }} expertly cocooned themselves. Even the blankets are impressed by this level of coziness!"
+  user:
+    - "{{ .author }} carefully tucks {{ .target }} into bed. Cozy level: Maximum."
+    - "With a flick of the blankets, {{ .author }} tucks {{ .target }} in, adding a final boop for good measure."
+    - "{{ .author }} bundles up {{ .target }} tightly in a burrito of fluff. Only the snoot remains visible!"
+    - "‘Goodnight, little floof!’ {{ .author }} tucks {{ .target }} in with a gentle pat on the head."
+    - "Blanket secured! {{ .author }} makes sure {{ .target }} is tucked in nice and snug. Sweet dreams!"
+    - "{{ .author }} wraps {{ .target }} up like a perfect floofito. Sleep well, burrito buddy!"
+    - "Tuck tuck! {{ .author }} ensures {{ .target }} is all snug with the coziest blankets imaginable."
+    - "The blankets swish and swoosh as {{ .author }} tucks {{ .target }} in like a professional tuckologist."
+    - "{{ .author }} fluffs the pillows, smooths the blankets, and tucks {{ .target }} in with the utmost care."
+    - "‘Sleep tight, floofy one!’ {{ .author }} lovingly tucks {{ .target }} in. May your dreams be extra fluffy!"
+  fragments:
+    adj: [ "warm", "snug", "cozy", "fluffy", "comfy", "soft", "dreamy", "peaceful", "secure", "gentle" ]
+pour:
+  bot:
+    - "{{ .author }} tries to pour me a drink. Uh-oh, I hope you don't mind a little spark in your tea!"
+    - "{{ .author }} poured a drink for me! Analysis complete: 80% data, 20% virtual foam."
+    - "{{ .author }} handed me a drink. Error: Taste module not installed. Initiating 'pretend to sip' mode!"
+    - "You poured me a drink, {{ .author }}? Huh, I’ll just simulate enjoyment. Mmm... delightful circuits!"
+    - "{{ .author }} poured a {{ .drink }} for me. Sensors detect... fluff particles?! Definitely 5 stars."
+  self:
+    - "{{ .author }} pours themselves a warm {{ .drink }}. A moment of pure bliss!"
+    - "Carefully, {{ .author }} fills their cup with {{ .drink }}. Cozy vibes achieved!"
+    - "{{ .author }} treats themselves to a perfect pour of {{ .drink }}. Cheers to self-care!"
+    - "With a satisfied tail wag, {{ .author }} pours up some delicious {{ .drink }}."
+    - "{{ .author }} pours a {{ .drink }} into a cute mug. A little floofy pick-me-up!"
+  user:
+    - "{{ .author }} pours a steaming cup of {{ .drink }} for {{ .target }}. Time to sip and relax!"
+    - "A kind gesture! {{ .author }} carefully pours a {{ .drink }} for {{ .target }}. Enjoy!"
+    - "{{ .target }} now has a fresh cup of {{ .drink }}, courtesy of {{ .author }}. How refreshing!"
+    - "{{ .author }} skillfully fills a glass with {{ .drink }} for {{ .target }}. Best service in town!"
+    - "With a flick of the paw, {{ .author }} pours a {{ .drink }} for {{ .target }}."
+    - "‘One {{ .drink }} coming right up!’ {{ .author }} serves {{ .target }} with a grin and a tail wag."
+    - "{{ .target }} gets a delightful {{ .drink }} poured by {{ .author }}. What a treat!"
+    - "{{ .author }} carefully balances a tray with {{ .drink }} and delivers it to {{ .target }}. Fancy!"
+    - "{{ .target }} receives a flawless pour of {{ .drink }} from {{ .author }}. Cheers!"
+    - "‘For you, my friend,’ says {{ .author }} while presenting {{ .target }} a freshly poured {{ .drink }}."
+  fragments:
+    drink:
+      - "hot chocolate"
+      - "iced coffee"
+      - "green tea"
+      - "orange juice"
+      - "sparkling water"
+      - "blueberry smoothie"
+      - "milk with a cute straw"
+      - "mysterious glowing tea"
+      - "boba tea with extra boba"
+      - "warm milk, extra floofy"
+      - "cappuccino with a paw print"
+      - "maple syrup latte"
+      - "glass of questionable punch"
+      - "cozy mug of soup"
+      - "fluffy milkshake"
+      - "apple cider"
+      - "pumpkin spice latte"
+      - "honey lemon tea"
+      - "cold brew with a dash of fluff"
+      - "lavender lemonade"
+      - "rose milk tea"
+      - "berry blast smoothie"
+      - "mint chocolate frappe"
+      - "peach iced tea"
+      - "coconut water"
+      - "vanilla bean latte"
+      - "strawberry milk"
+      - "mango lassi"
+      - "cup of courage (results may vary)"
+      - "digital byte smoothie"
+      - "tiny cup of imaginary tea"
+      - "mug of liquid fluff"
+      - "cup of existential dread (limited edition)"
+      - "barkuccino"
+      - "whiskerberry shake"
+      - "floofytail frappe"
+      - "pawberry punch"
+      - "sippy cup of chaos"
+      - "liquid static"
+      - "reality-flavored soda"
+      - "hyper-caffeinated void espresso"
+      - "glass of existential crisis"
+      - "cup of liquid time"
+      - "quantum chai"
+      - "anomalous apple juice"
+      - "sentient smoothie"
+      - "unspeakable espresso"
+      - "pitch-black lemonade"
+      - "dimension drip"
+      - "reverse milkshake"
+      - "plasma chai"
+      - "gummy tea"
+      - "reality-root beer"
+      - "synthetic nostalgia tonic"
+      - "uncolored cola"
+      - "questionable essence"
+      - "liquid regret"
+      - "voidwater"
+      - "distilled laughter"
+      - "liquid luck"
+      - "Eldritch brew"
+      - "cup of absolute zero"
+      - "cinnamon swirl milk"
+      - "dreamy cloud latte"
+      - "galaxy gulp"
+      - "zero-gravity grape fizz"
+      - "glowtail tea"
+      - "whimsy water"
+      - "cup of questionable hydration"
+      - "vanilla floofuccino"
+      - "fuzzy logic lemonade"
+      - "enchanted elderberry elixir"
+      - "pawberry parfait drink"
+      - "carrot cream cooler"
+      - "minty whisker whip"
+      - "cocoa with extra snoot warmth"
+      - "cup of 'just a sip' that never ends"
+      - "milkshake of eternal fluff"
+roles:
+  notAvailable: "This server has not been set up to use this feature."
+  notMod: "Wait a minute... You're not a mod! Get the heck outta here."
+  self: "You can't do that to yourself!"
+  alreadyHasRole: "This user already has the role."
+  error: "An error occurred while assigning the role. The bot or roles may not be set up correctly."
+  temp:
+    success: "{{ .target }} has been given the temporary role. It will expire around {{ .expires }}."
+  regulars:
+    success: "{{ .target }} has been given the regulars role successfully."
+    joinTimeNotMet: "{{ .target }} has not been a member of the server for long enough to be given the regulars role."
+    messageCountNotMet: "{{ .target }} has not sent enough messages to be given the regulars role. They have sent {{ .value }} messages so far."
+    distinctDaysNotMet: "{{ .target }} has not been active enough on the server to be given the regulars role. They have been active for {{ .value }} days so far."
+admin:
+  config:
+    reload:
+      success: "Configuration reloaded successfully."

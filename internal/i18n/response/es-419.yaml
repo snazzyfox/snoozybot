@@ -1,0 +1,395 @@
+base:
+  cooldown:
+    - "¡Woof! Baja las revoluciones, amigo. Estás en cooldown. Pero el canal de spam del bot está libre para jugar."
+    - "¡Demasiada energía! Estás en cooldown, peludito. Puedes ir al canal de spam del bot mientras esperas."
+    - "¡Ups! El bot necesita un descansito. Espera tantito o desata tu lado salvaje en el canal de spam del bot."
+    - "Calma, zorrito veloz. Tienes cooldown. Aprovecha para correr por el canal de spam del bot."
+    - "¡Uy! Estás en cooldown. Mientras tanto, el canal de spam del bot está listo para tus travesuras."
+my/bedtime/get:
+  success: Tu hora de dormir actual es a las {{ .time }}.
+  missing: Aún no has establecido una hora de dormir. Usa `set` para hacerlo.
+my/bedtime/set:
+  invalid: No entendí esa hora. Usa un formato como `11:00pm` o `23:00`.
+  tzMissing: No has configurado tu zona horaria. Usa `/my timezone set` para hacerlo.
+  success: ¡Listo! Tu hora de dormir está establecida. Te recordaré si sigues despierto.
+my/bedtime/clear:
+  success: Tu hora de dormir ha sido eliminada. Ya no te recordaré que te vayas a dormir.
+my/bedtime/notif:
+  late:
+    - ¡Hey {{ .user }}, a la cama! Ya es tarde.
+    - No trasnoches, {{ .user }}. Dormir bien es importante.
+    - ¡Hey {{ .user }}, a la cama! No querrás sufrir en la mañana.
+    - ¡Hey {{ .user }}, es hora de dormir! A menos que seas un búho, entonces duerme de pie.
+    - ¡{{ .user }}! ¡Duerme! ¡YA!
+    - Escúchame {{ .user }}. Tus ojos pesan. Te hundes en un sueño profundo. **Duerme ahora.**
+    - A la cama, {{ .user }}. Todos seguirán aquí mañana, podrás hablar con ellos entonces.
+    - Está bien {{ .user }}, desconéctate y duerme. ¡Internet seguirá aquí mañana!
+    - "{{ .user }}, vete a dormir antes de convertirte en un zombi sin sueño."
+    - Si no duermes ahora, {{ .user }}, tu yo del futuro estará furioso en la mañana.
+    - "{{ .user }}, tu cama te llama. ¿No la escuchas? Es hora de dormir."
+    - Deja de resistirte, {{ .user }}. Las mantas suaves te esperan. ¡Duerme!
+    - "{{ .user }}, dormir es como un punto de guardado. Guarda tu progreso para mañana."
+    - ¡A dormir, {{ .user }}! El mundo de los sueños te espera.
+    - Piensa en lo bien que te sentirás mañana si duermes ahora, {{ .user }}. ¡A la cama!
+    - "{{ .user }}, tu almohada está sola. ¡Ve a hacerle compañía!"
+    - ¡Sin excusas, {{ .user }}! A la cama antes de que empiece la cuenta regresiva...
+    - Ya es muy tarde, {{ .user }}. Hasta los hombres lobo se fueron a dormir. ¡Ve a la cama!
+    - La luna ya está cansada, {{ .user }}. Los zorros se acurrucan y los búhos se esconden. ¡Tú también deberías!
+    - Hasta los furries nocturnos ya se están desconectando, {{ .user }}. ¡Tú ya vas muy tarde para dormir!
+    - Tu cola está caída, {{ .user }}. Eso es señal de agotamiento. ¡A la cama, peludito!
+    - ¿Sigues despierto, {{ .user }}? ¿Necesito golpearte con una almohada? ¡A dormir ya!
+    - Tus patitas deben estar cansadas de tanto deslizar la pantalla, {{ .user }}. ¡Dales un descanso, ve a dormir!
+    - Bostezo... Hasta el alfa de la manada duerme, {{ .user }}. ¿No quieres ser un peludito bien descansado?
+    - Muy bien, {{ .user }}, última advertencia. Si no te duermes ya, enviaré una manada de huskies soñolientos tras de ti.
+    - Sigues despierto más allá de la hora de dormir, {{ .user }}. Eso va contra las sagradas leyes de los furries soñolientos. ¡A dormir!
+    - ¡A la cama, {{ .user }}! O el zorro de los sueños se negará a traerte sueños geniales esta noche.
+  early:
+    - ¡Arriba y brilla!—Espera, no, {{ .user }}. La luna todavía está vigilando, vuelve a dormir.
+    - ¡Hey {{ .user }}, vuelve a la cama! Es demasiado temprano.
+    - ¡Oh {{ .user }}, estás despierto! Intentabas cruzar la frontera...
+    - ¡Vuelve a la cama, {{ .user }}! Hasta las criaturas nocturnas están cerrando sesión.
+    - ¿Estás despierto temprano hoy, {{ .user }}? Tal vez podrías recuperar unas horas de sueño.
+    - "{{ .user }}, despertaste antes que los pájaros comiencen a cantar. Eso no es normal. Vuelve a dormir."
+    - "{{ .user }}, hasta los mapaches acaban de irse a dormir. ¿Vas a tomar el turno nocturno? ¡Duerme!"
+    - El sol ni siquiera ha salido, {{ .user }}. ¿Seguro que no eres un búho en secreto? ¡De vuelta a la cama!
+    - Hey {{ .user }}, ¡de vuelta a tu madriguera! Aún no ha salido la luz del día, y tú tampoco deberías.
+    - Hey {{ .user }}, ¿por qué estás despierto? Incluso los lobos siguen acurrucados en sus madrigueras. ¡Vuelve a dormir!
+    - Hey {{ .user }}, por fin despiertas... Intentabas dormir, ¿no? Entraste a este servidor de Discord, igual que nosotros y ese furry de allá.
+    - Psst, {{ .user }}... Te has despertado demasiado temprano. Los furries nocturnos aún duermen, ¡vuelve a la cama!
+    - Uhh, {{ .user }}... ¿Te has bugueado? No deberías estar despierto aún. Intenta reiniciar... en la cama.
+    - Whoa, {{ .user }}. Los madrugadores consiguen gusanos, pero el zorro cansado consigue más sueño. ¡Duerme más!
+my/timezone/get:
+  success: Tu zona horaria actual es {{ .zone }}.
+  missing: Aún no has establecido tu zona horaria. Usa `/my timezone set` para configurarla.
+my/timezone/set:
+  success: Tu zona horaria ahora está configurada a {{ .zone }}.
+  invalid: No reconozco esa zona horaria. Usa uno de los nombres sugeridos o encuentra tu zona horaria en [la base de datos IANA aquí](https://data.iana.org/time-zones/code/zone1970.tab).
+quote:
+  missing:
+    - Este usuario no tiene frases. Parece que no ha dicho nada digno de recordar.
+    - ¡Nada de citas por aquí! Este peludito se guarda sus mejores frases.
+    - Ni una palabra. Parece que este zorrito prefiere los secretos.
+    - Este lomito no ha dicho nada digno de ser citado. ¡Qué calladito!
+    - Silencio total. ¿Estará planeando algo o solo disfruta de la tranquilidad?
+    - ¡Ninguna frase para presumir! Tal vez este peludito es de pocas palabras.
+  success: |-
+    {{ .user }} dijo: 
+    >>> {{ .content }}
+quotes/add:
+  botTarget: Ni se te ocurra citarme en eso.
+  success: La frase con el ID {{ .id }} ha sido guardada.
+  duplicate: Este usuario ya tiene una frase para eso.
+quotes/delete:
+  missing: Ese ID de frase no existe.
+  success: Esa frase ha desaparecido de la faz de la Tierra.
+quotes/find:
+  empty: No encontré ninguna frase que coincida con tu búsqueda.
+  hasMore: Hay más frases que coinciden con tu búsqueda. Si buscas una en particular, prueba con algo más específico.
+reminder/set:
+  format: No entiendo la hora que proporcionaste. Usa un formato como "mañana a las 9:30am", "en 3 días" o una fecha y hora exactas.
+  past: Eh... ¡No puedo recordarte algo del pasado! Aún no tengo una máquina del tiempo.
+  timezone: No puedo recordarte cosas porque no sé en qué zona horaria estás. Por favor, establece una primero.
+  success: ¡Tu recordatorio está listo! Te avisaré a las {{ .time }}. Si necesitas cancelarlo, usa el ID {{ .id }}.
+reminder/list:
+  empty: No hay recordatorios en este canal por ahora... ¿Por qué no creas uno?
+  hasMore: Hay más recordatorios que no caben en esta pantalla. ¡Parece que tienes un montón de cosas por hacer!
+reminder/cancel:
+  success: ¡Recordatorio ID {{ .id }} cancelado! Se fue como un suspiro de pelusa.
+  missing: Mmm, no encontré ningún recordatorio con ese ID. ¿Se habrá escapado corriendo?
+reminder/notif:
+  - ¡Oye, {{ .name }}! Aquí está tu recordatorio peludito sobre {{ .content }}.
+  - ¡Guau guau, {{ .name }}! Dijiste que te avisara sobre {{ .content }}. ¡Misión cumplida!
+  - ¡Rrronroneo, {{ .name }}! Aquí viene tu recordatorio de {{ .content }}. ¡No lo olvides!
+  - ¡Hey, {{ .name }}! Tu recordatorio sobre {{ .content }} está aquí, con extra de mimos.
+  - ¡Ladrido amistoso para ti, {{ .name }}! No te olvides de {{ .content }}. ¡Eres un campeón!
+my/birthday/notif:
+  - 🎂 ¡Feliz Cumplepelitos, {{ .name }}! Que tu día esté lleno de mimos y mordisquitos juguetones. 🐾
+  - 🐾 ¡Wuff wuff! Que tengas un cumple de lo más colita-meneante, {{ .name }}! 🎉
+  - 🎁 ¡Que cada ladrido de felicidad te acompañe hoy, {{ .name }}! ¡Feliz cumpleaños! 🐾
+  - 🐾 ¡Hora de celebrarlo a lo grande, {{ .name }}! ¡Que las croquetas no falten! 🎂
+  - 🎉 ¡Guau! Un año más de pura peludencia. Que tu día esté lleno de lamiditas, {{ .name }}!
+  - 🐾 ¡Feliz cumplepeludo, {{ .name }}! Que las siestas sean largas y los premios infinitos. 🎂
+  - 🎁 ¡Hoy es tu día, {{ .name }}! Dale duro a esos pastelitos y disfruta como un cachorro. 🐾
+  - 🎂 ¡A mover esa colita, {{ .name }}! Feliz cumpleaños, que tu día sea tan alegre como un juego de perseguir pelotas.
+  - 🐾 ¡Eres un año más fabuloso, {{ .name }}! Que tu día esté lleno de juegos y siestas soleadas. 🎉
+  - 🎉 ¡Cumpleaños feliz, {{ .name }}! Espero que tu día sea tan suave y reconfortante como una mantita peluda. 🐾
+my/birthday/set:
+  no_channel: Este servidor no tiene activadas las notificaciones de cumpleaños. ¡Pregúntale a tu admin peludito si las puedes tener aquí!
+  timezone: Aún no has configurado tu zona horaria. Usa `/my timezone set` para hacerlo.
+  success: ¡Tu cumple está guardado! 🥳
+my/birthday/clear:
+  success: Tu cumpleaños ha sido eliminado. ¡No más pastelitos por ahora! 😿
+my/settings/mentions:
+  set: ¡Está bien! Ya no te mencionaré si alguien usa comandos contigo.
+  unset: ¿Demasiado silencio? Volveré a mencionarte si alguien usa comandos contigo.
+report:
+  notAvailable: ¡Uy! Este servidor no tiene el comando de reportes activado. Mejor mándale un MD a un moderador en línea.
+  invalidImage: Hmm, esa captura no parece una imagen válida. Prueba con otra, peludito.
+  title: Reporte Recibido - ¡Zarpazos a la vista!
+  originator: "Reporte de: "
+  location: "Problema en: "
+  target: "Reportado: "
+  success: ¡Tu reporte fue enviado! Los mods le darán una revisada y actuarán como corresponda. Si necesitamos más info, te avisamos. ¡Gracias por ayudar a mantener esta madriguera segura y cómoda!
+flip:
+  heads: Cara
+  tails: Cruz
+  success:
+    - Lanzaste una moneda y cayó en... ¡**{{ .result }}**! 🪙
+    - ¡La moneda va volando! Y al caer... es **{{ .result }}**.
+    - Cara o cruz, peludito. Y el destino dice... **{{ .result }}**.
+    - La moneda gira, gira, ¡y termina en **{{ .result }}**! ¿Suerte de zorro?
+    - Con un buen zarpazo, la moneda vuela y cae en... ¡**{{ .result }}**!
+  failure:
+    - ¡Ups! La moneda rodó debajo del sofá. No hay resultado esta vez.
+    - ¡Ay caramba! La moneda se fue al abismo. Parece que no quiere decidir.
+    - Bueno, eso no salió como esperaba. La moneda ahora vive una aventura debajo de los muebles.
+roll:
+  success:
+    - 🎲 Lanzaste un dado de {{ .sides }} caras y obtuviste un **{{ .result }}**.
+    - ¡Qué suerte! Sacaste un **{{ .result }}** en un dado de {{ .sides }} caras. 🥳
+    - Un **{{ .result }}** en un dado de {{ .sides }} caras. No está nada mal.
+    - ¡Bum! **{{ .result }}** sobre {{ .sides }}. Parece que los astros están de tu lado. 🌟
+    - El dado gira y gira... ¡**{{ .result }}**! Buen lanzamiento. 🐾
+  tooManySides:
+    - ¡Ups! Ese dado tiene tantas caras que ahora parece una pelota. ¡Adiós dado!
+    - Con {{ .sides }} caras, ese dado decidió que rodar sin parar era su destino. 🌪️
+    - ¡Error de cálculo! Ese dado rodó tanto que ya debe estar en otra galaxia. 🚀
+  tooFewSides:
+    - ¿{{ .sides }} caras? Eso no es un dado, es prácticamente una moneda con aspiraciones filosóficas.
+    - Ups, un dado necesita al menos 3 caras. Con {{ .sides }} no estás tirando un dado, estás jugando cara o cruz.
+    - Ejem... Con {{ .sides }} lados, tu dado es más una ilusión matemática que un objeto real. ¡Inténtalo de nuevo!
+bap: 
+  self:
+    - "{{ .author }} parece decidido, levanta {{ .object }} y se bapea... directamente en el {{ .body_part }}. ¡Bravo!"
+    - "{{ .author }} practica sus técnicas de bapeo, pero termina bapeándose a sí mismo en el {{ .body_part }} con {{ .object }}."
+    - "{{ .author }} grita '¡Hora de bapear!' pero calcula mal y termina bapeándose con {{ .object }}. ¡Genio!"
+    - "{{ .author }} blande {{ .object }} dramáticamente, pero rebota y le da un bapeo directo en el {{ .body_part }}. ¡La física gana!"
+    - "{{ .author }} se confunde a mitad del bapeo y termina bapeándose a sí mismo en el {{ .body_part }} con {{ .object }}. ¡Auto-bapeo desbloqueado!"
+  bot:
+    - "{{ .author }} intenta bapear a {{ .target }} con {{ .object }}, pero {{ .target }} activa el modo de autodefensa. ¡Suerte, {{ .author }}!"
+    - "{{ .author }} bapea a {{ .target }} con {{ .object }}. {{ .target }} se queda mirando fijamente… y luego cae al suelo con dramatismo. ¡Premio a la actuación!"
+    - "{{ .author }} le da un bap suave a {{ .target }} con {{ .object }}, pero el bot grita de ‘dolor’. ¡Qué actuación tan convincente!"
+    - "{{ .author }} bapea a {{ .target }} con {{ .object }}. De repente, el bot chisporrotea. ¿Acabas de tocar el botón de autodestrucción?"
+    - "{{ .author }} intenta bapear a {{ .target }}. {{ .target }} contraataca con un mensaje gigante de ‘bap.exe ha fallado.’ ¿Victoria?"
+  user:
+    - "{{ .author }} enrolla {{ .object }} y bapea a {{ .target }} en el {{ .body_part }}."
+    - "{{ .author }} le da un suave bapeo a {{ .target }} con {{ .object }}. ¡Boop!"
+    - "{{ .author }} bapea a escondidas a {{ .target }} usando {{ .object }}. ¡Te atrapé!"
+    - "{{ .author }} blande {{ .object }} como una gran arma y bapea a {{ .target }} con entusiasmo."
+    - "{{ .author }} bapea a {{ .target }} en el {{ .body_part }} con {{ .object }} mientras se ríe sin parar."
+    - "{{ .author }} intenta bapear a {{ .target }} con {{ .object }}, pero {{ .target }} lo esquiva a tiempo."
+    - "{{ .target }} recibe un bapeo sorpresa de {{ .author }} y {{ .object }}. ¡Paf!"
+    - "{{ .author }} declara dramáticamente '¡Ataque de bapeo!' y bapea a {{ .target }} con {{ .object }}."
+    - "{{ .author }} usa {{ .object }} para hacer un bapeo perfecto en el {{ .body_part }} de {{ .target }}."
+    - "{{ .author }} lanza un bapeo travieso a {{ .target }} con {{ .object }}. ¡La multitud contiene la respiración!"
+  fragments:
+    object: [ "un periódico", "una almohada", "un peluche", "un calcetín enrollado", "una pluma", "un fideo de piscina", "una baguette", "un juguete chillón", "una espada de espuma", "una hoja gigante" ]
+    body_part: [ "hocico", "cola", "pata", "oreja", "pelaje", "nariz", "frente", "mejilla", "almohadillas", "bigotes" ]
+boop:
+  self:
+    - "{{ .author }} se da un toquecito en la nariz. ¡Autoboop desbloqueado!"
+    - "{{ .author }} intenta boopearse a sí mismo, pero termina haciéndose cosquillas. ¡Qué gracioso!"
+    - "{{ .author }} accidentalmente se boopea. ¡A veces pasa, hasta a los mejores!"
+    - "{{ .author }} se mira al espejo y se da un toquecito. Nivel de ternura: máximo."
+    - "{{ .author }} {{ .adverb }} se boopea en la nariz. Un pequeño mimo para sí mismo."
+  bot:
+    - "{{ .author }} intenta boopear a {{ .target }}, pero el bot responde: '¡Error 404: Boop no encontrado!'"
+    - "{{ .author }} da un boop a {{ .target }}. El bot emite un pitido de desaprobación."
+    - "{{ .author }} intenta boopear a {{ .target }}, pero el bot activa el escudo anti-boop. ¡Rebote!"
+    - "{{ .author }} lanza un boop a {{ .target }}, pero termina siendo boopeado de regreso. ¡Justicia bot!"
+    - "{{ .author }} {{ .adverb }} boopea a {{ .target }}, y el bot susurra: 'Eso fue un error fatal… para ti.'"
+  user:
+    - "{{ .author }} {{ .adverb }} le da un boop a {{ .target }}. ¡Nariz boopeada con éxito!"
+    - "{{ .author }} se acerca sigilosamente y le da un boop sorpresa a {{ .target }}. ¡Misión cumplida!"
+    - "{{ .author }} boopea a {{ .target }} en medio de una conversación. No hay escapatoria del boop."
+    - "{{ .author }} da un boop épico a {{ .target }}, provocando una ola de ternura extrema."
+    - "{{ .author }} boopea a {{ .target }}. ¡Ahora {{ .target }} es oficialmente el rey del boop!"
+    - "{{ .author }} y {{ .target }} intercambian boops amistosos. ¡Una guerra de ternura!"
+    - "{{ .author }} boopea a {{ .target }} con amor. Nivel de felicidad incrementado."
+    - "{{ .author }} {{ .adverb }} lanza un boop a {{ .target }} y escapa. ¡Boop ninja!"
+    - "{{ .author }} da un boop a {{ .target }}. El universo entero aplaude la ternura."
+    - "{{ .author }} le da un boop a {{ .target }} en la punta de la nariz. ¡Pura perfección!"
+  fragments:
+    adverb: [ "suavemente", "juguetonamente", "con cariño", "alegremente", "sorpresivamente", "traviesamente", "amorosamente", "con ternura", "con emoción", "graciosamente" ]
+bonk:
+  bot:
+    - "{{ .author }} le da un tremendo zape al bot. ¡Ouch! ¡Mis circuitos lo sintieron!"
+    - "¡Ey! {{ .author }} me zapeó sin previo aviso. ¡Protesto formalmente!"
+    - "{{ .author }} intenta un zape, pero mi escudo anti-zape está activado. ¡Jaque mate!"
+    - "¡Error 404: Respeto no encontrado! {{ .author }} me ha zapeado sin piedad."
+    - "¡Zape detectado! {{ .author }}, esto solo se resolverá con una guerra de almohadas."
+  self:
+    - "{{ .author }} decide darse un zape a sí mismo. A veces, el peor enemigo es uno mismo."
+    - "¡Zape autoaplicado! {{ .author }} parece haber entrado en modo autopiloto."
+    - "{{ .author }} se zapea y lo justifica como ‘entrenamiento avanzado de combate fluffoso’."
+    - "¿Por qué tanto drama? {{ .author }} se dio un zape y ahora parece muy arrepentido."
+    - "Con gran determinación, {{ .author }} se aplica un zape. Autocontrol 0, fluff 100."
+  user:
+    - "¡Zape! {{ .author }} {{ .adv }} le da un golpe épico a {{ .target }} con un {{ .stick }}."
+    - "Sin previo aviso, {{ .author }} azota un zape en la frente de {{ .target }}. Impacto crítico."
+    - "¡Pum! {{ .author }} le lanza un zape legendario a {{ .target }}. ¡La historia lo recordará!"
+    - "El pobre {{ .target }} no lo vio venir. {{ .author }} le dio un zape tan fuerte que hizo eco."
+    - "{{ .author }} desafía a {{ .target }} a una batalla de zapes. Que gane el fluffiest."
+    - "Zape sigiloso activado. {{ .target }} fue zapeado antes de poder reaccionar. Buen trabajo, {{ .author }}."
+    - "{{ .author }} {{ .adv }} le da un cariñoso zape a {{ .target }}. Porque a veces, el amor se expresa así."
+    - "Con un gesto dramático, {{ .author }} asesta un zape perfecto a {{ .target }}."
+    - "{{ .target }} intenta escapar, pero {{ .author }} ya tenía preparado el zape definitivo."
+    - "El zape de {{ .author }} resonó a lo lejos. {{ .target }} nunca olvidará ese momento."
+  fragments:
+    adv: [ "juguetonamente", "traviesamente", "afectuosamente", "con furia", "con amor", "con dramatismo" ]
+    stick: [ "martillo de peluche", "cola fluffy", "almohada gigante", "martillo de goma", "pollo de plástico", "cojín mullido" ]
+cute:
+  bot:
+    - "{{ .author }} dice que soy lindo? ¡No tú! Eres {{ .adv }} lindo!"
+    - "Error 404: Autenticidad de lindura no encontrada. Confirmado: {{ .author }} es {{ .adv }} más lindo que yo."
+    - "¡Aww, {{ .author }} me llamó lindo! Pero claramente eres tú el que está {{ .adv }} adorable."
+    - "Mis circuitos están fallando por tanta ternura. Pero {{ .author }}, tú eres {{ .adv }} más lindo que cualquier bot."
+    - "¿Lindo yo? ¡Ja! {{ .author }}, eres tú quien está {{ .adv }} lleno de esponjosidad y lindura."
+  self:
+    - "{{ .author }} acaba de declarar que es {{ .adv }} lindo, y sinceramente, no podemos discutir eso."
+    - "¡Míralo nada más! {{ .author }} está rebosante de una confianza {{ .adv }} linda. ¡Brilla, estrellita!"
+    - "{{ .author }} hace una pose {{ .adv }} linda frente al espejo. Puntuación: 100/10 en ternura."
+    - "‘¡Soy el más {{ .adv }} lindo del mundo!’ — Y sí, todos estamos de acuerdo, {{ .author }}."
+    - "{{ .author }} ha activado el modo ‘auto-lindura {{ .adv }}’. Advertencia: Niveles críticos de ternura."
+  user:
+    - "¡Alerta de ternura! {{ .author }} acaba de decir que {{ .target }} es {{ .adv }} lindo. ¡Preparen los abrazos!"
+    - "Mira nada más a {{ .target }} recibiendo halagos. {{ .author }} dice que está {{ .adv }} adorable."
+    - "Confirmado: {{ .target }} es oficialmente {{ .adv }} lindo, y {{ .author }} no puede estar más de acuerdo."
+    - "¡Bip bip! Sensores de lindura activados. Según {{ .author }}, {{ .target }} es {{ .adv }} adorable."
+    - "¡Aww! {{ .author }} simplemente no pudo resistirse a decir lo {{ .adv }} lindo que es {{ .target }}."
+    - "‘¿Quién es el más {{ .adv }} lindo aquí?’ Claramente, según {{ .author }}, la respuesta es {{ .target }}."
+    - "¡Esponjosidad máxima! {{ .author }} declaró que {{ .target }} es el ser más {{ .adv }} lindo de todos."
+    - "Los niveles de ternura han alcanzado su punto máximo. {{ .author }} piensa que {{ .target }} está {{ .adv }} adorable."
+    - "¡Sujétense! {{ .author }} acaba de lanzar una bomba de ternura. {{ .target }} es oficialmente {{ .adv }} lindo."
+    - "Rondas de abrazos para {{ .target }}. {{ .author }} lo ha coronado como el ser {{ .adv }} más lindo del día."
+  fragments:
+    adv: [ "súper", "mega", "ultra", "requeté", "absolutamente", "tan", "tiernamente", "ridículamente", "fantásticamente", "esponjosamente" ]
+hug:
+  bot:
+    - "{{ .author }} quiere un abrazo? ¡No hay devoluciones! Ven acá, bolita de pelos."
+    - "¡Bip bop! Iniciando protocolo de abrazos para {{ .author }}. Advertencia: ¡Demasiada ternura!"
+    - "¡Abrazo solicitado! Prepárate, {{ .author }}. ¡El abrazo más {{ .adj }} está en camino!"
+    - "{{ .author }} quiere un abrazo. ¿Sabes qué? ¡Abrazos dobles activados!"
+    - "Procesando abrazo... {{ .author }}, ¡prepárate para una dosis de peluche extra!"
+  self:
+    - "{{ .author }} se envuelve en un abrazo {{ .adj }}. A veces, uno mismo da los mejores abrazos."
+    - "¡Cuidado! {{ .author }} acaba de lanzarse un abrazo {{ .adj }}. ¡Todo esponjosidad!"
+    - "{{ .author }} se dio un abrazote {{ .adj }}. ¡La cola no para de menearse!"
+    - "Para esos días de necesitar cariño, {{ .author }} se da un abrazo {{ .adj }}. ¡Qué ternura!"
+    - "¡Autoabrazo exitoso! {{ .author }} está ahora envuelto en un cálido abrazo {{ .adj }}."
+  user:
+    - "{{ .author }} atrapa a {{ .target }} en un abrazo {{ .adj }}. ¡Las colitas se menean felices!"
+    - "Sin dudarlo, {{ .author }} le da a {{ .target }} un enorme abrazo {{ .adj }}. ¡Ternura desbloqueada!"
+    - "‘¡Ven aquí!’ {{ .author }} rodea a {{ .target }} en un abrazo {{ .adj }}. Floof por todas partes."
+    - "¡Alerta de abrazo! {{ .author }} y {{ .target }} están ahora en un abrazo {{ .adj }} sin escapatoria."
+    - "¡Máxima peluchez! {{ .author }} le da a {{ .target }} un abrazo {{ .adj }} lleno de amor."
+    - "¡Sorpresa! {{ .author }} acaba de darle a {{ .target }} un abrazo {{ .adj }}. ¡Que nadie se resista!"
+    - "Hora de acurrucarse. {{ .author }} abraza a {{ .target }} con un toque {{ .adj }} de felicidad."
+    - "{{ .author }} y {{ .target }} están atrapados en un abrazo {{ .adj }}. ¿Quién soltará primero?"
+    - "Con un salto alegre, {{ .author }} abraza a {{ .target }} en un abrazo {{ .adj }}. ¡Floof overload!"
+    - "Abrazos activados. {{ .author }} le dio a {{ .target }} un abrazo {{ .adj }} que hizo vibrar la floofósfera."
+  fragments:
+    adj: [ "cálido", "esponjoso", "apretado", "tiernoso", "achuchable", "reconfortante", "gigante", "peluchoso", "mullido", "adorable" ]
+pet:
+  bot:
+    - "{{ .author }} intentó acariciarme? ¡Ja! Solo recibes un latigazo de cola."
+    - "¡Intento de caricia detectado! {{ .author }} ha sido engañado. Mejor suerte la próxima vez."
+    - "{{ .author }} quiere acariciarme? Solo si traes premios. ¡Soy un floof exigente!"
+    - "¿Crees que puedes acariciarme, {{ .author }}? Pfft. ¡Belly rubs o nada!"
+    - "¡Acariciar fallido! Ahora soy yo quien te acaricia, {{ .author }}. ¡Reverso peludo activado!"
+  self:
+    - "{{ .author }} se da una caricia {{ .adj }} en la cabeza. ¡Amarse a uno mismo es lo mejor!"
+    - "¡Qué ternura! {{ .author }} se hace una caricia {{ .adj }} y menea la cola felizmente."
+    - "{{ .author }} se mima con una caricia {{ .adj }}. ¡Se nota la felicidad en las orejas!"
+    - "‘Pat pat.’ {{ .author }} se da una caricia {{ .adj }}. Autocuidado floof al 100 %."
+    - "{{ .author }} decidió que hoy se merece una caricia {{ .adj }}. ¡Un auténtico abrazo peludo!"
+  user:
+    - "{{ .author }} acaricia la cabeza de {{ .target }} con una caricia {{ .adj }}. ¡Pelos esponjados garantizados!"
+    - "Boop. {{ .author }} le dio a {{ .target }} una caricia {{ .adj }}. ¡Las orejitas tiemblan de gusto!"
+    - "‘¡Ven aquí!’ {{ .author }} acaricia a {{ .target }} con una ternura {{ .adj }}."
+    - "{{ .target }} recibe una caricia {{ .adj }} de {{ .author }}. ¡Floofómetro al máximo!"
+    - "Acariciando alert: {{ .author }} acaba de darle a {{ .target }} una caricia {{ .adj }}. ¡Felicidad desbloqueada!"
+    - "Con patitas cuidadosas, {{ .author }} acaricia a {{ .target }}. Puro amor {{ .adj }}."
+    - "{{ .author }} decidió que {{ .target }} merecía una caricia {{ .adj }}. ¡Qué momento tan adorable!"
+    - "Purr purr... {{ .author }} acaricia a {{ .target }} con un toque {{ .adj }}. Suave y reconfortante."
+    - "Floof detected. {{ .author }} da una caricia {{ .adj }} a {{ .target }}. ¡Peluchitos por todas partes!"
+    - "{{ .author }} le da a {{ .target }} una caricia {{ .adj }} en la cabeza. ¡Una lluvia de esponjosidad!"
+  fragments:
+    adj: [ "tierna", "suave", "cálida", "peluchosa", "adorable", "reconfortante", "feliz", "esponjosa", "amigable", "relajante" ]
+tuck:
+  bot:
+    - "{{ .author }} intenta arroparme. ¡Error crítico! ¡Sobrecalentamiento detectado! Activando modo ventilador."
+    - "¡Uy! {{ .author }} cree que soy un peludito para arropar. Pero soy puro metal y bits, ¡no calorcito!"
+    - "Advertencia: Arropado detectado. {{ .author }}, ¡mi temperatura sube más rápido que un zorrito en una manta!"
+    - "¡Error 404: No se encontró el modo mullidito! {{ .author }} lo intentó, pero solo obtuve más calor."
+    - "{{ .author }} me arropa. Resultado: Sobrecalentamiento activado. Necesito hielo. ¡Mucho hielo!"
+  self:
+    - "{{ .author }} se arropa como un burrito de floof. Solo falta la salsa de sueños felices."
+    - "Después de un largo día, {{ .author }} se desliza bajo las mantas. ¡Hora de las zzzz!"
+    - "{{ .author }} se envuelve cómodamente, con la cola asomando por la manta. ¡Qué ternura!"
+    - "Bien arropado y con las orejas calentitas, {{ .author }} está listo para soñar con nubes de algodón."
+    - "{{ .author }} se acurruca bajo las sábanas, envuelto en pura comodidad. Sueños peludos activados."
+  user:
+    - "{{ .author }} arropa a {{ .target }} con mucho cariño. ¡Buenas noches, peludito!"
+    - "Con delicadeza, {{ .author }} acomoda las mantas alrededor de {{ .target }}. ¡A soñar con zorritos!"
+    - "{{ .author }} envuelve a {{ .target }} en un capullo de floof. Nivel de comodidad: 100 %."
+    - "‘A dormir se ha dicho,’ dice {{ .author }} mientras arropa a {{ .target }} con una sonrisa."
+    - "Con un gesto cariñoso, {{ .author }} deja a {{ .target }} arropado como un peluchito."
+    - "Las mantas vuelan y aterrizan perfectamente. {{ .author }} arropa a {{ .target }} como todo un experto."
+    - "¡Burrito de floof listo! {{ .author }} arropa a {{ .target }} como si fuera un delicioso sueño."
+    - "‘Dulces sueños, peludito,’ susurra {{ .author }} mientras ajusta las cobijas para {{ .target }}."
+    - "{{ .author }} asegura que {{ .target }} esté bien arropado, con las orejitas cómodamente bajo las mantas."
+    - "‘A dormir, campeón,’ dice {{ .author }} mientras {{ .target }} se acomoda felizmente."
+  fragments:
+    adj: [ "cálido", "suave", "mullido", "acogedor", "feliz", "tranquilo", "peludito", "reconfortante", "sereno", "dulce" ]
+pour:
+  bot:
+    - "{{ .author }} intenta servirme una bebida. ¡Cuidado! Los circuitos y los líquidos no son amigos."
+    - "{{ .author }} me dio un {{ .drink }}. Análisis completo: 90% líquido, 10% sospecha."
+    - "¿Un {{ .drink }} para mí? Umm... mis sensores no detectan sabor, pero gracias, {{ .author }}."
+    - "{{ .author }} me ofrece un {{ .drink }}. Simulando placer... ¡Mmm, digitalmente delicioso!"
+    - "¡Wow! Un {{ .drink }} solo para mí. Espero que no haya bytes en él..."
+  self:
+    - "{{ .author }} se sirve un {{ .drink }} bien merecido. ¡Salud!"
+    - "Con una sonrisa, {{ .author }} disfruta de un cálido {{ .drink }}."
+    - "{{ .author }} prepara con esmero un {{ .drink }}. ¡Parece delicioso!"
+    - "Nada como un {{ .drink }} para empezar el día. ¡Disfrútalo, {{ .author }}!"
+    - "¡Tiempo de relajarse! {{ .author }} toma un sorbo de su {{ .drink }}."
+  user:
+    - "{{ .author }} le sirve a {{ .target }} un {{ .drink }}. ¡Qué amable!"
+    - "Con gran destreza, {{ .author }} vierte un {{ .drink }} para {{ .target }}. ¡A brindar!"
+    - "{{ .target }} recibe un delicioso {{ .drink }} de parte de {{ .author }}. ¡Qué detalle!"
+    - "{{ .author }} le pasa a {{ .target }} un {{ .drink }} bien preparado. ¿Listos para disfrutar?"
+    - "{{ .author }} prepara un {{ .drink }} especial para {{ .target }}. ¡A saborear!"
+  fragments:
+    drink:
+      - "chocolate caliente"
+      - "café helado"
+      - "té verde"
+      - "agua con gas"
+      - "jugo de bayas"
+      - "batido de zorromora"
+      - "leche tibia con espuma"
+      - "té de estrella fugaz"
+      - "bubble tea con extra boba"
+      - "capuchino con arte de espumita"
+      - "latte de maple"
+      - "infusión misteriosa"
+      - "poción de coraje (efectos desconocidos)"
+roles:
+  notAvailable: "Este servidor no está configurado para usar esta función."
+  notMod: "¡Un momento! No eres mod. ¡Fuera de aquí, pillín!"
+  self: "¡No puedes hacerte eso a ti mismo!"
+  alreadyHasRole: "Ese usuario ya tiene el rol."
+  error: "Ocurrió un error al asignar el rol. Puede que el bot o los roles no estén bien configurados."
+  temp:
+    success: "{{ .target }} ha recibido el rol temporal. Expirará alrededor de {{ .expires }}."
+  regulars:
+    success: "{{ .target }} ha recibido el rol de regulares con éxito."
+    joinTimeNotMet: "{{ .target }} no ha sido miembro del servidor por suficiente tiempo para recibir el rol de regulares."
+    messageCountNotMet: "{{ .target }} no ha enviado suficientes mensajes para recibir el rol de regulares. Ha enviado {{ .value }} mensajes hasta ahora."
+    distinctDaysNotMet: "{{ .target }} no ha estado lo suficientemente activo para recibir el rol de regulares. Ha estado activo durante {{ .value }} días hasta ahora."
+admin:
+  config:
+    reload:
+      success: "Configuración recargada exitosamente."

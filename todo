@@ -1,0 +1,23 @@
+events
+- chat (openai only)
+
+removed
+- collection (not used)
+- admin configs (not used)
+- localtime
+- auto unarchive
+- other profile stuff
+- tuch
+- roles (replaced by discord)
+
+
+
+db changes
+youtube & bluesky
+- no more creds
+- "enabled" no longer there
+- title_template: switch to go format {{ .channel }} and {{ .url }}
+- delete all the old template strings
+- archive old tables: tuch, collect
+twitch
+- presense.* configs -> twitch.*

@@ -1,25 +1,2 @@
-# Editors
-.idea/
-.vscode/
-
-# Pyinstaller
-build/
-dist/
-*.spec
-
-# OS
-.DS_STORE
-
-# Python
-__pycache__
-*.pyc
-*.pyo
-*.pyx
-.mypy_cache
-
 .env
-.env.*
-!.env.template
-*.db
-
-/_*
+_debug_*

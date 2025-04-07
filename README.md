@@ -1,35 +1,21 @@
 # Discord Bot
-A custom Discord bot with a bunch of random features for various discord servers.
+A custom Discord bot with a bunch of random small features for various discord servers.
 
 ## Getting Started
 
 You will need 
-- Python 3.11+
-- [Poetry](https://python-poetry.org/docs/#installation)
-- A [postgres](https://postgresql.org) database host
+- [Go](https://go.dev/)
+- A [postgres](https://postgresql.org) database
 
-To run the bot
-- `git clone` this repository
-- `poetry install`
-- Copy `.env.template` to `.env` and place your database credentials in it.
-- `poetry run python -m snoozybot`
+## Running the bot
 
-On first start with a fresh database, the bot will create the necessary tables and fail to start (since it's not yet 
-configured with the necessary tokens). You will need to manually place discord tokens in the database under the 
-`config` table. This is also a good time to add any other config values. You can see the full list of configuration
-keys in [the code](snoozybot/config/values.py).
+- Copy `.env.template` to `.env` and place your credentials in it.
+- Run the bot (from built binaries, or from source with `go run .`)
 
-Running the bot in production
+On first start with a fresh database, the bot will create the necessary structures and stop running immediately, because it has not yet been configured. After the first run, add tokens (such as discord tokens) to the database config table. The full list of config values are available in [](./internal/config/keys.go) and [](./internal/config/secrets.go). If you use another tool to manage the bot process (such as systemctl or docker), you can also specify environment variables there.
 
-- Instead of using a `.env` file, you may also pass database credentials directly as environment variables.
-  Most tools you use to manage the bot process (such as `systemd` or if you put it inside a `docker` image) 
-  can pass these environment variables in for you.
+## Internationalization
 
-## Commands in the bot
+All messages sent through the bot can be translated into different languages. Command names, descriptions, prompts, etc are all shown in the user's own langauge if available. All ephemeral messages are shown in the user's own language. All public messages (those sent to a channel visible to more than one person) are sent in the server's preferred language.
 
-All commands for the bot are created as slash (application) commands. To view the list of commands available, simply
-type a `/` into discord's chat box after the bot has joined your server.
-
-## Developing commands
-
-Commands are added to the bot as hikari extensions under [the commands directory](snoozybot/discord_bot/commands).
+Translations are listed in YAML files in [](./internal/i18n). Any time there are lists of values they are chosen at random for variation. These variations should all contain the same information but they are not always direct translations from other languages.

@@ -1,0 +1,250 @@
+echo:
+  name: echo
+  description: Repeats the message you provide to see if I'm working.
+  options:
+    text:
+      name: text
+      description: The text to repeat
+petpet:
+  name: petpet
+  description: Create a petpet image using anyone's avatar.
+  options:
+    user:
+      name: user
+      description: The person to pet
+my:
+  name: my
+my/bedtime:
+  name: bedtime
+my/bedtime/set:
+  name: set
+  description:
+    Set a bedtime for yourself. I'll remind you to go to bed if you're
+    still active after this time.
+  options:
+    time:
+      name: time
+      description: Your bedtime, for example, 11:00pm or 23:00
+my/bedtime/get:
+  name: get
+  description: Get your current bedtime setting.
+my/bedtime/clear:
+  name: clear
+  description: Clear your existing bedtime setting.
+my/birthday:
+  name: birthday
+my/birthday/set:
+  name: set
+  description: Set your birthday.
+  options:
+    month:
+      name: month
+      description: The month of your birthday.
+      choices:
+        "1": 01 - January
+        "2": 02 - February
+        "3": 03 - March
+        "4": 04 - April
+        "5": 05 - May
+        "6": 06 - June
+        "7": 07 - July
+        "8": 08 - August
+        "9": 09 - September
+        "10": 10 - October
+        "11": 11 - November
+        "12": 12 - December
+    day:
+      name: day
+      description: The day of your birthday.
+my/birthday/clear:
+  name: clear
+  description: Clear your existing birthday setting.
+my/timezone:
+  name: timezone
+my/timezone/set:
+  name: set
+  description: Set your timezone. This information is used across all servers with this bot.
+  options:
+    zone:
+      name: zone
+      description: The standardized name of your timezone in the IANA Timezone Database.
+my/timezone/get:
+  name: get
+  description: Get your current timezone setting.
+my/settings:
+  name: settings
+my/settings/mentions:
+  name: mentions
+  description: Choose if you want to block the bot from mentioning you in messages.
+  options:
+    suppress:
+      name: suppress
+      description: Whether to disallow the bot from mentioning you.
+quote:
+  name: quote
+  description: Get a random quote from someone.
+  options:
+    user:
+      name: user
+      description: The person you want to quote.
+quotes:
+  name: quotes
+quotes/get:
+  name: get
+  description: Get a specific quote
+  options:
+    id:
+      name: name
+      description: The numerical ID of the quote to get.
+quotes/add:
+  name: add
+  description: Add a new quote
+  options:
+    user:
+      name: user
+      description: The user to add a quote to.
+    text:
+      name: text
+      description: Something the user said.
+quotes/delete:
+  name: delete
+  description: Delete a specific quote.
+  options:
+    id:
+      name: id
+      description: The numerical ID of the quote to get.
+quotes/find:
+  name: find
+  description: Find a quote by author or content.
+  options:
+    text_search:
+      name: text_search
+      description: Some text you want to search for.
+    user:
+      name: user
+      description: A user you want to search for.
+Add Quote:
+  name: Add Quote
+reminder:
+  name: reminder
+reminder/set:
+  name: set
+  description: Create a new reminder in this channel.
+  options:
+    time:
+      name: time
+      description:
+        Time to be reminded at. For example, tomorrow 10am, in 2 hours, or
+        an exact date and time.
+    message:
+      name: message
+      description: What do you want to be reminded about?
+reminder/cancel:
+  name: cancel
+  description: Cancel an existing reminder
+  options:
+    id:
+      name: id
+      description: ID of the reminder to cancel.
+reminder/list:
+  name: list
+  description: List all reminders in this channel.
+report:
+  name: report
+  description: Report inappropriate or unwanted behvaior privately to moderators.
+  options:
+    user:
+      name: user
+      description: The user you want to file a report against.
+    location:
+      name: location
+      description: The place where you had a problem with this user.
+      choices:
+        Private Message: Private Message
+        This Server: This Server
+        Another Server: Another Server
+        Outside Discord: Outside Discord
+    screenshot:
+      name: screenshot
+      description: Upload or paste a screenshot showing the problem
+    comment:
+      name: comment
+      description: Any extra information you want to provide to moderators
+flip:
+  name: flip
+  description: Flip a coin.
+roll:
+  name: roll
+  description: Roll a die.
+  options:
+    sides:
+      name: sides
+      description: The number of sides on the die.
+bap:
+  name: bap
+  description: Bap someone.
+  options:
+    user:
+      name: user
+      description: The user to bap.
+boop:
+  name: boop
+  description: Boop someone on the nose.
+  options:
+    user:
+      name: user
+      description: The user to boop.
+bonk:
+  name: bonk
+  description: Bonk someone.
+  options:
+    user:
+      name: user
+      description: The user to bonk.
+cute:
+  name: cute
+  description: Call someone cute.
+  options:
+    user:
+      name: user
+      description: The user to call cute.
+hug:
+  name: hug
+  description: Give someone a big, fluffy hug.
+  options:
+    user:
+      name: user
+      description: The user to hug.
+pet:
+  name: pet
+  description: Give someone gentle head pats.
+  options:
+    user:
+      name: user
+      description: The user to pet.
+tuck:
+  name: tuck
+  description: Tuck someone into bed.
+  options:
+    user:
+      name: user
+      description: The user to tuck in.
+pour:
+  name: pour
+  description: Pour a drink for someone.
+  options:
+    user:
+      name: user
+      description: The user to pour a drink for.
+roles/temp:
+  name: Assign Temporary Role
+roles/regulars:
+  name: Assign Regulars Role
+admin:
+  name: admin
+admin/config:
+  name: config
+admin/config/reload:
+  name: reload
+  description: Make the bot reload its configuration. For Snazzy use only, probably.
+

@@ -1,0 +1,222 @@
+echo:
+  name: eco
+  description: Di lo que dije. Se usa para verificar que el bot funciona.
+  options:
+    text:
+      name: texto
+      description: El texto a repetir
+petpet:
+  name: petpet
+  description: Crea una imagen de petpet usando el avatar de cualquier persona.
+  options:
+    user:
+      name: usuario
+      description: La persona a acariciar
+my:
+  name: mi
+my/bedtime:
+  name: hora_de_dormir
+my/bedtime/set:
+  name: establecer
+  description: Establece tu hora de dormir. Te recordaré si sigues despierto a esa hora.
+  options:
+    time:
+      name: hora
+      description: Tu hora de dormir, por ej. 11:00pm o 23:00
+my/bedtime/get:
+  name: ver
+  description: Consulta tu hora de dormir actual.
+my/bedtime/clear:
+  name: borrar
+  description: Borra tu hora de dormir actual.
+my/timezone:
+  name: zona_horaria
+my/timezone/set:
+  name: establecer
+  description: Configura tu zona horaria. Esto se usará en todos los servidores
+    con este bot.
+  options:
+    zone:
+      name: zona
+      description: El nombre estandarizado de tu zona horaria en la base de datos IANA.
+my/timezone/get:
+  name: ver
+  description: Consulta tu zona horaria actual.
+my/settings:
+  name: configuración
+my/settings/mentions:
+  name: menciones
+  description: Elige si deseas evitar que el bot te mencione en los mensajes.
+  options:
+    suppress:
+      name: suprimir
+      description: Evita que el bot te mencione.
+quote:
+  name: frase
+  description: Obtén una frase aleatoria de alguien.
+  options:
+    user:
+      name: usuario
+      description: La persona a la que quieres citar.
+quotes:
+  name: frases
+quotes/get:
+  name: obtener
+  description: Obtén una frase específica.
+  options:
+    id:
+      name: id
+      description: El ID numérico de la frase que deseas obtener.
+quotes/add:
+  name: agregar
+  description: Agrega una nueva frase.
+  options:
+    user:
+      name: usuario
+      description: El usuario al que deseas agregar una frase.
+    text:
+      name: texto
+      description: Algo que dijo el usuario.
+quotes/delete:
+  name: eliminar
+  description: Elimina una frase específica.
+  options:
+    id:
+      name: id
+      description: El ID numérico de la frase que deseas eliminar.
+quotes/find:
+  name: buscar
+  description: Busca una frase por autor o contenido.
+  options:
+    text_search:
+      name: buscar_texto
+      description: Un texto que deseas buscar.
+    user:
+      name: usuario
+      description: Un usuario que deseas buscar.
+Add Quote:
+  name: Agregar frase
+reminder:
+  name: recordatorio
+reminder/set:
+  name: crear
+  description: Crea un nuevo recordatorio en este canal.
+  options:
+    time:
+      name: hora
+      description:
+        Hora para el recordatorio. Por ejemplo, mañana a las 10am, en 2
+        horas o una fecha y hora exactas.
+    message:
+      name: mensaje
+      description: ¿De qué quieres que te recuerde?
+reminder/cancel:
+  name: cancelar
+  description: Cancelar un recordatorio existente.
+  options:
+    id:
+      name: id
+      description: ID del recordatorio a cancelar.
+reminder/list:
+  name: lista
+  description: Ver todos los recordatorios en este canal.
+report:
+  name: reportar
+  description:
+    Reporta comportamientos inapropiados o no deseados de forma privada
+    a los moderadores.
+  options:
+    user:
+      name: usuario
+      description: El usuario que deseas reportar.
+    location:
+      name: ubicación
+      description: El lugar donde tuviste un problema con este usuario.
+      choices:
+        Private Message: Mensaje Privado
+        This Server: Este Servidor
+        Another Server: Otro Servidor
+        Outside Discord: Fuera de Discord
+    screenshot:
+      name: captura
+      description: Sube o pega una captura de pantalla que muestre el problema.
+    comment:
+      name: comentario
+      description: Información adicional que quieras proporcionar a los moderadores.
+flip:
+  name: cara_o_cruz
+  description: Lanza una moneda.
+roll:
+  name: lanzar
+  description: Lanza un dado.
+  options:
+    sides:
+      name: caras
+      description: El número de caras del dado.
+bap:
+  name: bap
+  description: Bapear a alguien.
+  options:
+    usuario:
+      name: usuario
+      description: El usuario a bapear.
+boop:
+  name: boop
+  description: Hacer un boop en la nariz de alguien.
+  options:
+    user:
+      name: usuario
+      description: El usuario al que deseas boopear.
+bonk:
+  name: bonk
+  description: Bonkear a alguien por sus acciones cuestionables.
+  options:
+    user:
+      name: usuario
+      description: El usuario a bonkear.
+cute:
+  name: lindo
+  description: Decirle a alguien que es lindo.
+  options:
+    user:
+      name: usuario
+      description: El usuario a quien llamar lindo.
+hug:
+  name: abrazo
+  description: Dale un gran abrazo esponjoso a alguien.
+  options:
+    user:
+      name: usuario
+      description: El usuario a quien abrazar.
+pet:
+  name: acariciar
+  description: Dale unas caricias suaves en la cabeza a alguien.
+  options:
+    user:
+      name: usuario
+      description: El usuario a quien acariciar.
+tuck:
+  name: arropar
+  description: Arropa a alguien en la cama.
+  options:
+    user:
+      name: usuario
+      description: El usuario a quien arropar.
+pour:
+  name: servir
+  description: Servir una bebida a alguien.
+  options:
+    user:
+      name: usuario
+      description: El usuario para servirle una bebida.
+roles/temp:
+  name: Asignar rol temporal
+roles/regulars:
+  name: Asignar rol de regulares
+admin:
+  name: admin
+admin/config:
+  name: config
+admin/config/reload:
+  name: recargar
+  description: Hace que el bot recargue su configuración. Probablemente solo para Snazzy.

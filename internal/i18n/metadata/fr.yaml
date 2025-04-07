@@ -1,0 +1,222 @@
+echo:
+  name: écho
+  description: Répétez ce que j'ai dit. Utilisé pour vérifier que le bot fonctionne.
+  options:
+    text:
+      name: texte
+      description: Le texte à répéter
+petpet:
+  name: petpet
+  description: Créez une image petpet en utilisant l'avatar de n'importe qui.
+  options:
+    user:
+      name: utilisateur
+      description: La personne à caresser
+my:
+  name: mon
+my/bedtime:
+  name: heure_de_coucher
+my/bedtime/set:
+  name: definir
+  description: Définis une heure de coucher. Je te rappellerai d'aller au lit si
+    tu es encore actif.
+  options:
+    time:
+      name: heure
+      description: Ton heure de coucher, par ex. 23h00 ou 11:00pm
+my/bedtime/get:
+  name: obtenir
+  description: Affiche ton heure de coucher actuelle.
+my/bedtime/clear:
+  name: effacer
+  description: Supprime ton heure de coucher actuelle.
+my/timezone:
+  name: fuseau_horaire
+my/timezone/set:
+  name: definir
+  description: Définis ton fuseau horaire. Il sera utilisé sur tous les serveurs
+    avec ce bot.
+  options:
+    zone:
+      name: zone
+      description: Le nom standardisé de ton fuseau horaire dans la base IANA.
+my/timezone/get:
+  name: obtenir
+  description: Affiche ton fuseau horaire actuel.
+my/settings:
+  name: paramètres
+my/settings/mentions:
+  name: mentions
+  description: Choisissez si vous souhaitez empêcher le bot de vous mentionner dans les messages.
+  options:
+    suppress:
+      name: supprimer
+      description: Empêcher le bot de vous mentionner.
+quote:
+  name: citation
+  description: Obtiens une citation aléatoire de quelqu'un.
+  options:
+    user:
+      name: utilisateur
+      description: La personne dont tu veux citer les mots.
+quotes:
+  name: citations
+quotes/get:
+  name: obtenir
+  description: Obtiens une citation spécifique.
+  options:
+    id:
+      name: id
+      description: L'identifiant numérique de la citation à obtenir.
+quotes/add:
+  name: ajouter
+  description: Ajoute une nouvelle citation.
+  options:
+    user:
+      name: utilisateur
+      description: L'utilisateur auquel ajouter une citation.
+    text:
+      name: texte
+      description: Quelque chose que l'utilisateur a dit.
+quotes/delete:
+  name: supprimer
+  description: Supprime une citation spécifique.
+  options:
+    id:
+      name: id
+      description: L'identifiant numérique de la citation à supprimer.
+quotes/find:
+  name: rechercher
+  description: Trouve une citation par auteur ou contenu.
+  options:
+    text_search:
+      name: recherche_texte
+      description: Un texte que tu souhaites rechercher.
+    user:
+      name: utilisateur
+      description: Un utilisateur que tu souhaites rechercher.
+Add Quote:
+  name: Ajouter une citation
+reminder:
+  name: rappel
+reminder/set:
+  name: définir
+  description: Créer un nouveau rappel dans ce canal.
+  options:
+    time:
+      name: heure
+      description:
+        Heure du rappel. Par exemple, demain à 10h, dans 2 heures ou une
+        date précise.
+    message:
+      name: message
+      description: De quoi veux-tu te rappeler ?
+reminder/cancel:
+  name: annuler
+  description: Annuler un rappel existant.
+  options:
+    id:
+      name: id
+      description: ID du rappel à annuler.
+reminder/list:
+  name: liste
+  description: Afficher tous les rappels dans ce canal.
+report:
+  name: signaler
+  description: Signale un comportement inapproprié ou indésirable en privé aux modérateurs.
+  options:
+    user:
+      name: utilisateur
+      description: L'utilisateur que tu souhaites signaler.
+    location:
+      name: emplacement
+      description: L'endroit où tu as rencontré un problème avec cet utilisateur.
+      choices:
+        Private Message: Message Privé
+        This Server: Ce Serveur
+        Another Server: Un Autre Serveur
+        Outside Discord: En Dehors de Discord
+    screenshot:
+      name: capture
+      description: Téléverse ou colle une capture d'écran montrant le problème.
+    comment:
+      name: commentaire
+      description: Toute information supplémentaire que tu souhaites fournir aux
+        modérateurs.
+flip:
+  name: pile_ou_face
+  description: Lance une pièce.
+roll:
+  name: lancer
+  description: Lance un dé.
+  options:
+    sides:
+      name: faces
+      description: Le nombre de faces du dé.
+bap:
+  name: bap
+  description: Faire un bap à quelqu’un.
+  options:
+    utilisateur:
+      name: utilisateur
+      description: L'utilisateur à bapper.
+boop:
+  name: boop
+  description: Faire un boop sur le museau de quelqu'un.
+  options:
+    user:
+      name: utilisateur
+      description: L'utilisateur à booper.
+bonk:
+  name: paf
+  description: Paf quelqu'un pour ses actions douteuses.
+  options:
+    user:
+      name: utilisateur
+      description: L’utilisateur à bonker.
+cute:
+  name: mignon
+  description: Dire que quelqu’un est mignon.
+  options:
+    user:
+      name: utilisateur
+      description: L’utilisateur à complimenter pour sa mignonnerie.
+hug:
+  name: calin
+  description: Fais un gros câlin tout doux à quelqu’un.
+  options:
+    user:
+      name: utilisateur
+      description: L’utilisateur à câliner.
+pet:
+  name: caresser
+  description: Fais des petites caresses sur la tête de quelqu’un.
+  options:
+    user:
+      name: utilisateur
+      description: L’utilisateur à caresser.
+tuck:
+  name: border
+  description: Bordez quelqu’un dans son lit.
+  options:
+    user:
+      name: utilisateur
+      description: L’utilisateur à border.
+pour:
+  name: servir
+  description: Servir une boisson à quelqu’un.
+  options:
+    user:
+      name: utilisateur
+      description: L’utilisateur à qui servir une boisson.
+roles/temp:
+  name: Attribuer un rôle temporaire
+roles/regulars:
+  name: Attribuer le rôle des habitués
+admin:
+  name: admin
+admin/config:
+  name: config
+admin/config/reload:
+  name: recharger
+  description: Fait recharger la configuration du bot. Probablement réservé à Snazzy.

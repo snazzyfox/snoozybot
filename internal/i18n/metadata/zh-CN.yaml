@@ -1,0 +1,217 @@
+echo:
+  name: 回声
+  description: 复述我说的话。用于检查机器人是否正常工作。
+  options:
+    text:
+      name: 文本
+      description: 要重复的文本
+petpet:
+  name: petpet
+  description: 使用任何人的头像创建一个 petpet 图片。
+  options:
+    user:
+      name: 用户
+      description: 要拍一拍的人
+my:
+  name: 我的
+my/bedtime:
+  name: 睡觉时间
+my/bedtime/set:
+  name: 设置
+  description: 设置你的睡觉时间。如果你还在活跃，我会提醒你该上床啦。
+  options:
+    time:
+      name: 时间
+      description: 你的睡觉时间，例如 11:00pm 或 23:00
+my/bedtime/get:
+  name: 获取
+  description: 查看你当前的睡觉时间。
+my/bedtime/clear:
+  name: 清除
+  description: 清除你当前的睡觉时间。
+my/timezone:
+  name: 时区
+my/timezone/set:
+  name: 设置
+  description: 设置你的时区。这将在所有使用该机器人的服务器中生效。
+  options:
+    zone:
+      name: 区域
+      description: 你在 IANA 时区数据库中的标准时区名称。
+my/timezone/get:
+  name: 获取
+  description: 查看你当前的时区设置。
+my/settings:
+  name: 设置
+my/settings/mentions:
+  name: 提及
+  description: 选择是否阻止机器人在消息中提及你。
+  options:
+    suppress:
+      name: 禁止
+      description: 禁止机器人提及你。
+quote:
+  name: 名言
+  description: 获取某人的随机名言。
+  options:
+    user:
+      name: 用户
+      description: 你想引用的人。
+quotes:
+  name: 管理名言
+quotes/get:
+  name: 获取
+  description: 获取一条特定的名言。
+  options:
+    id:
+      name: id
+      description: 要获取的名言的数字 ID。
+quotes/add:
+  name: 添加
+  description: 添加一条新的名言。
+  options:
+    user:
+      name: 用户
+      description: 你想为其添加名言的用户。
+    text:
+      name: 文本
+      description: 用户说过的话。
+quotes/delete:
+  name: 删除
+  description: 删除一条特定的名言。
+  options:
+    id:
+      name: id
+      description: 要删除的名言的数字 ID。
+quotes/find:
+  name: 查找
+  description: 根据作者或内容查找名言。
+  options:
+    text_search:
+      name: 文本搜索
+      description: 你想要搜索的文本。
+    user:
+      name: 用户
+      description: 你想要搜索的用户。
+Add Quote:
+  name: 添加名言
+reminder:
+  name: 提醒
+reminder/set:
+  name: 设置
+  description: 在此频道创建一个新的提醒。
+  options:
+    time:
+      name: 时间
+      description: 提醒的时间。例如，明天上午10点，2小时后，或具体的日期和时间。
+    message:
+      name: 消息
+      description: 你想提醒自己什么？
+reminder/cancel:
+  name: 取消
+  description: 取消一个现有的提醒。
+  options:
+    id:
+      name: id
+      description: 要取消的提醒 ID。
+reminder/list:
+  name: 列表
+  description: 列出此频道中的所有提醒。
+report:
+  name: 举报
+  description: 私下向管理员举报不当或不受欢迎的行为。
+  options:
+    user:
+      name: 用户
+      description: 你想举报的用户。
+    location:
+      name: 位置
+      description: 你遇到该用户问题的位置。
+      choices:
+        Private Message: 私信
+        This Server: 此服务器
+        Another Server: 其他服务器
+        Outside Discord: Discord 外部
+    screenshot:
+      name: 截图
+      description: 上传或粘贴一张截图，展示问题。
+    comment:
+      name: 备注
+      description: 提供给管理员的额外信息。
+flip:
+  name: 抛硬币
+  description: 抛一枚硬币。
+roll:
+  name: 掷骰子
+  description: 掷一个骰子。
+  options:
+    sides:
+      name: 面数
+      description: 骰子的面数。
+bap:
+  name: 拍
+  description: 拍一下某人。
+  options:
+    用户:
+      name: 用户
+      description: 要拍一下的用户。
+boop:
+  name: 戳
+  description: 在某人鼻子上轻轻一点。
+  options:
+    user:
+      name: 用户
+      description: 要被 boop 的用户。
+bonk:
+  name: 咚
+  description: 给某人来一下。
+  options:
+    user:
+      name: 用户
+      description: 要棒击的用户。
+cute:
+  name: 可爱
+  description: 夸奖某人很可爱。
+  options:
+    user:
+      name: 用户
+      description: 要夸可爱的用户。
+hug:
+  name: 拥抱
+  description: 给某人一个暖暖的毛茸茸拥抱。
+  options:
+    user:
+      name: 用户
+      description: 想要拥抱的用户。
+pet:
+  name: 抚摸
+  description: 给某人温柔地摸摸头。
+  options:
+    user:
+      name: 用户
+      description: 想要摸摸头的用户。
+tuck:
+  name: 塞被子
+  description: 帮某人把被子塞好。
+  options:
+    user:
+      name: 用户
+      description: 想要被塞好被子的人。
+pour:
+  name: 倒饮料
+  description: 为某人倒一杯饮料。
+  options:
+    user:
+      name: 用户
+      description: 为哪个用户倒饮料。
+roles/temp:
+  name: 赋予临时身份组
+  roles/regulars:
+  name: 赋予常客身份组
+admin:
+  name: 管理
+admin/config:
+  name: 配置
+admin/config/reload:
+  name: 重载
+  description: 让机器人重载配置。大概只有小狐能用。
