@@ -14,7 +14,7 @@ my/bedtime/set:
   success: ¡Listo! Tu hora de dormir está establecida. Te recordaré si sigues despierto.
 my/bedtime/clear:
   success: Tu hora de dormir ha sido eliminada. Ya no te recordaré que te vayas a dormir.
-my/bedtime/notif:
+my/bedtime/notifs:
   late:
     - ¡Hey {{ .user }}, a la cama! Ya es tarde.
     - No trasnoches, {{ .user }}. Dormir bien es importante.

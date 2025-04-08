@@ -14,7 +14,7 @@ my/bedtime/set:
   success: Your bedtime is set! I'll remind you if you're still active after.
 my/bedtime/clear:
   success: Your bedtime has been cleared. I won't remind you to sleep anymore.
-my/bedtime/notif:
+my/bedtime/notifs:
   late:
     - "{{ .user }}, go to bed before you turn into a sleep-deprived zombie."
     - "{{ .user }}, sleep is like a save point in a game. Go save your progress for tomorrow!"
