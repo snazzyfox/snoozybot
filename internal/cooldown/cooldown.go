@@ -38,9 +38,9 @@ func (cm *CooldownManager) Can(guildId string, channelId string, member *dg.Memb
 		return true
 	}
 
-	if exempt, err := config.CooldownExemptChannels.Get(guildId).Value(); err == nil {
+	if exempt, err := config.CooldownExemptChannels.Get(guildId).Value(); err == nil && slices.Contains(exempt, json.Number(channelId)) {
 		log.Debug().Str("guild_id", guildId).Str("channel_id", channelId).Msg("Skipping cooldown for exempt channel")
-		return slices.Contains(exempt, json.Number(channelId))
+		return true
 	}
 
 	return checkBuckets(
