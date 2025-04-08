@@ -6,7 +6,6 @@ import (
 	"time"
 
 	dg "github.com/bwmarrin/discordgo"
-	"github.com/rs/zerolog/log"
 	"github.com/samber/lo"
 )
 
@@ -22,21 +21,21 @@ func bedtimeHandler(d EventData[dg.MessageCreate]) error {
 		return err
 	}
 	if user.Timezone == nil || user.Bedtime == nil {
-		log.Debug().Any("user", user).Msg("User does not have timezone or bedtime set, ignoring.")
+		d.Logger.Debug().Any("user", user).Msg("User does not have timezone or bedtime set, ignoring.")
 		return nil
 	}
 	now := time.Now().In(time.UTC)
 
 	// Skip if just recetly notified
 	if user.LastBedtimeNotified != nil && now.Sub(*user.LastBedtimeNotified) < cooldownDuration {
-		log.Debug().Any("user", user).Msg("User within bedtime notification cooldown.")
+		d.Logger.Debug().Any("user", user).Msg("User within bedtime notification cooldown.")
 		return nil
 	}
 
 	// Get the current time in the user's timezone.
 	tz, err := time.LoadLocation(*user.Timezone)
 	if err != nil {
-		log.Warn().Err(err).Msg("Failed to parse timezone for user. Ignoring operation.")
+		d.Logger.Warn().Err(err).Msg("Failed to parse timezone for user. Ignoring operation.")
 		return nil
 	}
 
@@ -52,7 +51,7 @@ func bedtimeHandler(d EventData[dg.MessageCreate]) error {
 	if timeSinceBed > sleepTime {
 		return nil
 	}
-	log.Info().Any("user", user).Msg("Sending bedtime notification")
+	d.Logger.Info().Any("user", user).Msg("Sending bedtime notification")
 	var key string
 	if timeSinceBed < (sleepTime / 2) { // First half of sleep period
 		key = "my/bedtime/notifs.late"

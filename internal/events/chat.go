@@ -17,7 +17,7 @@ import (
 	"github.com/openai/openai-go"
 	"github.com/openai/openai-go/option"
 	"github.com/openai/openai-go/responses"
-	"github.com/rs/zerolog/log"
+	"github.com/rs/zerolog"
 	"github.com/samber/lo"
 )
 
@@ -67,12 +67,12 @@ func chatMessageCreate(d EventData[dg.MessageCreate]) error {
 	roleIDs, err := config.ChatRoleIDs.Get(d.Event.GuildID).Value()
 	if err != nil {
 		// no role IDs means chat functionality not available. To enable for everyone, add the role ID for @everyone in that server.
-		log.Trace().Str("guild_id", d.Event.GuildID).Msg("AI Chat not configured for this server.")
+		d.Logger.Trace().Str("guild_id", d.Event.GuildID).Msg("AI Chat not configured for this server.")
 		return nil
 	}
 
 	// Chat functionality is enabled. Add the message to cache here.
-	log.Trace().Str("guild_id", d.Event.GuildID).Str("channel_id", d.Event.ChannelID).Str("user_id", d.Event.Author.ID).Msg("Adding message to AI chat cache.")
+	d.Logger.Trace().Str("guild_id", d.Event.GuildID).Str("channel_id", d.Event.ChannelID).Str("user_id", d.Event.Author.ID).Msg("Adding message to AI chat cache.")
 	addMessage(d.Event.ChannelID, d.Event.Message)
 
 	if d.Event.Author.Bot ||
@@ -81,7 +81,7 @@ func chatMessageCreate(d EventData[dg.MessageCreate]) error {
 		return nil
 	}
 
-	log.Trace().Str("guild_id", d.Event.GuildID).Str("channel_id", d.Event.ChannelID).Str("user_id", d.Event.Author.ID).Msg("User mentioned bot. Attempting AI response.")
+	d.Logger.Trace().Str("guild_id", d.Event.GuildID).Str("channel_id", d.Event.ChannelID).Str("user_id", d.Event.Author.ID).Msg("User mentioned bot. Attempting AI response.")
 	d.Event.Member.User = d.Event.Author
 	if !cdm.Can(d.Event.GuildID, d.Event.ChannelID, d.Event.Member) {
 		guild, _ := d.Session.Guild(d.Event.GuildID)
@@ -96,26 +96,26 @@ func chatMessageCreate(d EventData[dg.MessageCreate]) error {
 	var history []*dg.Message
 	if len(roleIDs) > 0 && lo.None(lo.Map(roleIDs, func(id json.Number, _ int) string { return string(id) }), d.Event.Member.Roles) {
 		// user doesn't have chat role. Use predefined prompt.
-		log.Debug().Str("guild_id", d.Event.GuildID).Str("channel_id", d.Event.ChannelID).Str("user_id", d.Event.Author.ID).Msg("User does not have chat role. Using default prompt.")
+		d.Logger.Debug().Str("guild_id", d.Event.GuildID).Str("channel_id", d.Event.ChannelID).Str("user_id", d.Event.Author.ID).Msg("User does not have chat role. Using default prompt.")
 		prompt = defaultPrompt
 		history = []*dg.Message{d.Event.Message}
 	} else {
-		log.Debug().Str("guild_id", d.Event.GuildID).Str("channel_id", d.Event.ChannelID).Str("user_id", d.Event.Author.ID).Msg("User has chat role. Using custom prompt.")
+		d.Logger.Debug().Str("guild_id", d.Event.GuildID).Str("channel_id", d.Event.ChannelID).Str("user_id", d.Event.Author.ID).Msg("User has chat role. Using custom prompt.")
 		promptLines, err := config.ChatPrompts.Get(d.Event.GuildID).Value()
 		if err != nil {
-			log.Error().Str("guild_id", d.Event.GuildID).Err(err).Msg("Chat role IDs set, but failed to get chat prompt")
+			d.Logger.Error().Str("guild_id", d.Event.GuildID).Err(err).Msg("Chat role IDs set, but failed to get chat prompt")
 		}
 		tmpl, err := template.New("prompt").Parse(strings.Join(promptLines, "\n"))
 		if err != nil {
-			log.Error().Str("guild_id", d.Event.GuildID).Strs("prompt", promptLines).Err(err).Msg("Failed to parse chat prompt")
+			d.Logger.Error().Str("guild_id", d.Event.GuildID).Strs("prompt", promptLines).Err(err).Msg("Failed to parse chat prompt")
 		}
 		member, err := d.Session.State.Member(d.Event.GuildID, d.Session.State.User.ID)
 		if err != nil {
-			log.Error().Str("guild_id", d.Event.GuildID).Err(err).Msg("Failed to get bot member")
+			d.Logger.Error().Str("guild_id", d.Event.GuildID).Err(err).Msg("Failed to get bot member")
 		}
 		guild, err := d.Session.State.Guild(d.Event.GuildID)
 		if err != nil {
-			log.Error().Str("guild_id", d.Event.GuildID).Err(err).Msg("Failed to get guild")
+			d.Logger.Error().Str("guild_id", d.Event.GuildID).Err(err).Msg("Failed to get guild")
 		}
 		prompt = i18n.TemplateString(tmpl, &i18n.Vars{
 			"bot_name":         member.DisplayName(),
@@ -127,7 +127,7 @@ func chatMessageCreate(d EventData[dg.MessageCreate]) error {
 		})
 		history = chatCaches[d.Event.ChannelID].GetAll()
 	}
-	response, err := getAIResponse(prompt, history)
+	response, err := getAIResponse(prompt, history, d.Logger)
 	if err != nil {
 		return err
 	}
@@ -139,7 +139,7 @@ func chatMessageCreate(d EventData[dg.MessageCreate]) error {
 	return nil
 }
 
-func getAIResponse(prompt string, history []*dg.Message) (string, error) {
+func getAIResponse(prompt string, history []*dg.Message, log *zerolog.Logger) (string, error) {
 	prompt += "\n\nThe message contains the most recent conversations in the channel for context. Respond only to the last message."
 	messagePrompt := strings.Join(lo.Map(history, func(message *dg.Message, _ int) string {
 		if message != nil {

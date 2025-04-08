@@ -4,21 +4,20 @@ import (
 	"snoozybot/internal/database"
 
 	dg "github.com/bwmarrin/discordgo"
-	"github.com/rs/zerolog/log"
 )
 
 func memberLeaveCleanup(d EventData[dg.GuildMemberRemove]) error {
 	userId := d.Event.User.ID
-	log.Info().Str("guild", d.Event.GuildID).Str("user", userId).Msg("Cleaning up data because user left server.")
+	d.Logger.Info().Str("guild", d.Event.GuildID).Str("user", userId).Msg("Cleaning up data because user left server.")
 
 	if res := database.Database.Where(&database.Quote{GuildID: d.Event.GuildID, UserID: userId}).Delete(&database.Quote{}); res.Error != nil {
-		log.Warn().Err(res.Error).Str("guild", d.Event.GuildID).Str("user", userId).Msg("Failed to delete quotes.")
+		d.Logger.Warn().Err(res.Error).Str("guild", d.Event.GuildID).Str("user", userId).Msg("Failed to delete quotes.")
 	}
 	if res := database.Database.Where(&database.ScheduledTask{GuildID: d.Event.GuildID, UserID: userId}).Delete(&database.ScheduledTask{}); res.Error != nil {
-		log.Warn().Err(res.Error).Str("guild", d.Event.GuildID).Str("user", userId).Msg("Failed to delete scheduled tasks.")
+		d.Logger.Warn().Err(res.Error).Str("guild", d.Event.GuildID).Str("user", userId).Msg("Failed to delete scheduled tasks.")
 	}
 	if res := database.Database.Where(&database.MessageMetric{GuildID: d.Event.GuildID, UserID: userId}).Delete(&database.MessageMetric{}); res.Error != nil {
-		log.Warn().Err(res.Error).Str("guild", d.Event.GuildID).Str("user", userId).Msg("Failed to delete message metrics.")
+		d.Logger.Warn().Err(res.Error).Str("guild", d.Event.GuildID).Str("user", userId).Msg("Failed to delete message metrics.")
 	}
 	return nil
 }

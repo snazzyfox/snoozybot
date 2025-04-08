@@ -9,7 +9,6 @@ import (
 
 	dg "github.com/bwmarrin/discordgo"
 	"github.com/hashicorp/golang-lru/v2/expirable"
-	"github.com/rs/zerolog/log"
 	"github.com/samber/lo"
 )
 
@@ -24,7 +23,7 @@ var audit = expirable.NewLRU[auditKey, *dg.AuditLogEntry](1_000, nil, 5*time.Sec
 
 func logMessageCreate(d EventData[dg.MessageCreate]) error {
 	if config.LogsChannelID.Get(d.Event.GuildID).Exists() && d.Event.Author != nil && !d.Event.Author.Bot {
-		log.Trace().Any("event", d.Event.Message).Msg("Message Created")
+		d.Logger.Trace().Any("event", d.Event.Message).Msg("Message Created")
 		cache.Add(d.Event.Message.ID, d.Event.Message)
 	}
 	return nil
@@ -33,7 +32,7 @@ func logMessageCreate(d EventData[dg.MessageCreate]) error {
 func logMessageUpdate(d EventData[dg.MessageUpdate]) error {
 	if logChannel, err := config.LogsChannelID.Get(d.Event.GuildID).Value(); err == nil {
 		if cached, ok := cache.Get(d.Event.Message.ID); ok {
-			log.Debug().Any("event", d.Event).Any("cached", cached).Msg("Message updated, found in cache.")
+			d.Logger.Debug().Any("event", d.Event).Any("cached", cached).Msg("Message updated, found in cache.")
 			if d.Event.Author != nil && !d.Event.Author.Bot && d.Event.EditedTimestamp != nil {
 				_, err := d.Session.ChannelMessageSendEmbed(string(logChannel), &dg.MessageEmbed{
 					Title: "Message Updated",
@@ -49,7 +48,7 @@ func logMessageUpdate(d EventData[dg.MessageUpdate]) error {
 				return err
 			}
 		} else {
-			log.Debug().Any("event", d.Event).Msg("Message updated, but not found in cache.")
+			d.Logger.Debug().Any("event", d.Event).Msg("Message updated, but not found in cache.")
 		}
 		cache.Add(d.Event.Message.ID, d.Event.Message)
 	}
@@ -59,7 +58,7 @@ func logMessageUpdate(d EventData[dg.MessageUpdate]) error {
 func logMessageDelete(d EventData[dg.MessageDelete]) error {
 	if logChannel, err := config.LogsChannelID.Get(d.Event.GuildID).Value(); err == nil {
 		if cached, ok := cache.Get(d.Event.Message.ID); ok {
-			log.Debug().Any("cached", cached).Msg("Message deleted, found in cache.")
+			d.Logger.Debug().Any("cached", cached).Msg("Message deleted, found in cache.")
 			auditEntry := waitForAuditLog(auditKey{action: dg.AuditLogActionMessageDelete, key: d.Event.ChannelID + cached.Author.ID})
 			_, err := d.Session.ChannelMessageSendEmbed(string(logChannel), addAuditLogFields(&dg.MessageEmbed{
 				Title: "Message Deleted",
@@ -77,7 +76,7 @@ func logMessageDelete(d EventData[dg.MessageDelete]) error {
 			cache.Remove(d.Event.Message.ID)
 			return err
 		} else {
-			log.Debug().Any("event", d.Event).Msg("Message deleted, but not found in cache.")
+			d.Logger.Debug().Any("event", d.Event).Msg("Message deleted, but not found in cache.")
 		}
 	}
 	return nil
@@ -85,7 +84,7 @@ func logMessageDelete(d EventData[dg.MessageDelete]) error {
 
 func logBan(d EventData[dg.GuildBanAdd]) error {
 	if logChannel, err := config.LogsChannelID.Get(d.Event.GuildID).Value(); err == nil {
-		log.Debug().Any("event", d.Event).Msg("Guild Ban Added")
+		d.Logger.Debug().Any("event", d.Event).Msg("Guild Ban Added")
 		auditEntry := waitForAuditLog(auditKey{action: dg.AuditLogActionMemberBanAdd, key: d.Event.User.ID})
 		_, err := d.Session.ChannelMessageSendEmbed(string(logChannel), addAuditLogFields(&dg.MessageEmbed{
 			Title: "User Banned",
@@ -101,7 +100,7 @@ func logBan(d EventData[dg.GuildBanAdd]) error {
 
 func logUnban(d EventData[dg.GuildBanRemove]) error {
 	if logChannel, err := config.LogsChannelID.Get(d.Event.GuildID).Value(); err == nil {
-		log.Debug().Any("event", d.Event).Msg("Guild Ban Removed")
+		d.Logger.Debug().Any("event", d.Event).Msg("Guild Ban Removed")
 		auditEntry := waitForAuditLog(auditKey{action: dg.AuditLogActionMemberBanRemove, key: d.Event.User.ID})
 		_, err := d.Session.ChannelMessageSendEmbed(string(logChannel), addAuditLogFields(&dg.MessageEmbed{
 			Title: "User Unbanned",
@@ -118,7 +117,7 @@ func logUnban(d EventData[dg.GuildBanRemove]) error {
 
 func logLeave(d EventData[dg.GuildMemberRemove]) error {
 	if logChannel, err := config.LogsChannelID.Get(d.Event.GuildID).Value(); err == nil {
-		log.Debug().Any("event", d.Event).Msg("User Left Guild")
+		d.Logger.Debug().Any("event", d.Event).Msg("User Left Guild")
 		auditEntry := waitForAuditLog(auditKey{action: dg.AuditLogActionMemberKick, key: d.Event.User.ID})
 		if auditEntry != nil {
 			_, err := d.Session.ChannelMessageSendEmbed(string(logChannel), addAuditLogFields(&dg.MessageEmbed{

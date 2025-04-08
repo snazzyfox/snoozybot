@@ -8,7 +8,6 @@ import (
 	"time"
 
 	dg "github.com/bwmarrin/discordgo"
-	"github.com/rs/zerolog/log"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -48,7 +47,7 @@ func roleMessageMetricsHandler(d EventData[dg.MessageCreate]) error {
 	})
 
 	if result.Error != nil {
-		log.Error().Err(result.Error).Msg("Failed to update message metrics")
+		d.Logger.Error().Err(result.Error).Msg("Failed to update message metrics")
 	}
 
 	// If the role is automated, check if the user should be given the role
@@ -57,6 +56,6 @@ func roleMessageMetricsHandler(d EventData[dg.MessageCreate]) error {
 		return err
 	}
 	d.Event.Member.User = d.Event.Author // the lib doesnt fill this
-	commands.TryAssignRegularsRole(d.Event.GuildID, d.Event.Member, &log.Logger, d.Session)
+	commands.TryAssignRegularsRole(d.Event.GuildID, d.Event.Member, d.Logger, d.Session)
 	return nil
 }
