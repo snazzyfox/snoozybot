@@ -9,8 +9,8 @@ import (
 )
 
 type Config struct {
-	GuildID     string `gorm:"primaryKey"`
 	ConfigKey   string `gorm:"primaryKey"`
+	GuildID     string `gorm:"primaryKey"`
 	ConfigValue datatypes.JSON
 }
 

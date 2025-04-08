@@ -393,3 +393,15 @@ admin:
   config:
     reload:
       success: "Configuración recargada exitosamente."
+chat:
+  cooldown:
+    - "¡Guau! ¡Vas demasiado rápido! Dame un respiro, lomito veloz."
+    - "¡Ay! Aún estoy recuperando mi energía peludita."
+    - "¡Esperaaa! Mi colita aún está procesando el último mensaje."
+    - "¡Patas quietas! Todavía estoy en cooldown, zorro travieso."
+    - "Necesito un break de pancita antes de seguir ladrando."
+    - "¡Estás quemando mis patitas digitales! Espera un poquito."
+    - "Todavía estoy rascando mi cabecita... vuelve en un ratito."
+    - "¡Wuff! Mi energía fluff sigue en recarga."
+    - "¡Me derretiste las orejitas! Necesito un momentito."
+    - "Mi botoncito de hablar está en siesta, vuelve pronto."

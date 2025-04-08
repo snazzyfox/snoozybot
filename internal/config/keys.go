@@ -36,4 +36,7 @@ const (
 	RolesRegularsMinDaysJoined GuildConfig[uint]        = "roles.regulars.min_days_joined"
 	RolesRegularsMinDaysActive GuildConfig[uint]        = "roles.regulars.min_days_active"
 	RolesRegularsAutoAssign    GuildConfig[bool]        = "roles.regulars.auto_assign"
+
+	ChatRoleIDs GuildConfig[[]json.Number] = "chat.role_ids"
+	ChatPrompts GuildConfig[[]string]      = "chat.prompts"
 )

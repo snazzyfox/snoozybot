@@ -135,8 +135,8 @@ func createBot(token string, guilds []string, ready *sync.WaitGroup) *dg.Session
 	})
 
 	// Register application event handlers
-	for _, handler := range events.Handlers {
-		bot.AddHandler(handler)
+	for _, event := range events.Events {
+		bot.AddHandler(event)
 	}
 	return bot
 }

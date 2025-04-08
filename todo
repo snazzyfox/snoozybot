@@ -1,23 +1,14 @@
-events
-- chat (openai only)
+back up data
+database
+systemctl 
+.env 
+bashrc
 
-removed
-- collection (not used)
-- admin configs (not used)
-- localtime
-- auto unarchive
-- other profile stuff
-- tuch
-- roles (replaced by discord)
+make new vm
+install postgres, htop, hl, vim
+restore db (selectively) and settings
+run deploy
 
+delete this file
 
-
-db changes
-youtube & bluesky
-- no more creds
-- "enabled" no longer there
-- title_template: switch to go format {{ .channel }} and {{ .url }}
-- delete all the old template strings
-- archive old tables: tuch, collect
-twitch
-- presense.* configs -> twitch.*
+clean out user data who's no longer in server

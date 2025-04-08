@@ -474,3 +474,15 @@ admin:
   config:
     reload:
       success: "Configuration rechargée avec succès."
+chat:
+  cooldown:
+    - "Ouaf ouaf ! Trop vite ! Donne-moi une petite pause, museau pressé !"
+    - "Minute, je reprends mon souffle... ces papattes ont besoin d’un break !"
+    - "T’es rapide comme un lynx ! Mais moi, je suis encore en recharge."
+    - "Fais dodo, petit loup ! Le temps que je me remette à japper."
+    - "Pfiou... j’ai besoin d’un câlin et d’un instant de repos !"
+    - "Wouf ! Tu vas user mes coussinets à ce rythme-là !"
+    - "Encore en cooldown, mon petit renardeau. Patience !"
+    - "Mon museau fait une pause ! Essaie encore dans quelques instants."
+    - "Même les fluffballs ont besoin d’un break !"
+    - "Un instant ! Mon moteur à ronrons redémarre lentement."

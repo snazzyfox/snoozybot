@@ -30,7 +30,7 @@ jobs:
         env:
           HOST: ${{ vars.DEPLOY_HOST }}
           PORT: ${{ vars.DEPLOY_PORT }}
-          USER: ${{ secrets.DEPLOY_USER }}
+          USER: ${{ vars.DEPLOY_USER }}
           KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
           TARGET: snoozybot/
           ARGS_MORE: --exclude '/.env' --chmod=Fu=rwx

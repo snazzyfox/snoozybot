@@ -23,19 +23,19 @@ var noRedirectClient = &http.Client{
 	},
 }
 
-func twitchStreamGuildAvailable(s *dg.Session, m *dg.GuildCreate) {
+func twitchStreamGuildAvailable(d EventData[dg.GuildCreate]) error {
 	// Sync all users presence with the role on bot start
 
-	streamingRoleID, _ := config.TwitchLiveRoleID.Get(m.Guild.ID).Value()
+	streamingRoleID, _ := config.TwitchLiveRoleID.Get(d.Event.Guild.ID).Value()
 	if streamingRoleID == "" {
-		return
+		return nil
 	}
-	log.Info().Str("guild", m.Guild.ID).Msg("Syncing twitch stream presence for guild on startup.")
+	log.Info().Str("guild", d.Event.Guild.ID).Msg("Syncing twitch stream presence for guild on startup.")
 
 	var live []string
-	log.Debug().Str("guild", m.Guild.ID).Any("presences", m.Guild.Presences).Msg("Presences") // TODO REMOVE
+	log.Debug().Str("guild", d.Event.Guild.ID).Any("presences", d.Event.Guild.Presences).Msg("Presences") // TODO REMOVE
 userPresence:
-	for _, presence := range m.Guild.Presences {
+	for _, presence := range d.Event.Guild.Presences {
 		// missing is unknown; don't touch it
 		if presence.Activities != nil {
 			// todo check if user is allowed to notify
@@ -43,46 +43,47 @@ userPresence:
 				if activity.Type == dg.ActivityTypeStreaming && strings.HasPrefix(activity.URL, "https://www.twitch.tv/") {
 					// is streaming
 					live = append(live, activity.URL[22:])
-					s.GuildMemberRoleAdd(m.Guild.ID, presence.User.ID, string(streamingRoleID))
+					d.Session.GuildMemberRoleAdd(d.Event.Guild.ID, presence.User.ID, string(streamingRoleID))
 					log.Info().Str("user", presence.User.Username).Str("channel", activity.URL[22:]).Msg("User is streaming, adding role")
 					break userPresence
 				}
 			}
 			// got to the end, not streaming
 			log.Debug().Str("user", presence.User.Username).Msg("User is not streaming, removing role")
-			s.GuildMemberRoleRemove(m.Guild.ID, presence.User.ID, string(streamingRoleID))
+			d.Session.GuildMemberRoleRemove(d.Event.Guild.ID, presence.User.ID, string(streamingRoleID))
 		}
 	}
-	log.Info().Strs("live", live).Str("guild", m.Guild.ID).Msg("Finished processing initial presence data.")
+	log.Info().Strs("live", live).Str("guild", d.Event.Guild.ID).Msg("Finished processing initial presence data.")
 	twitch.GetStreams(live) // result ignored; just to update cache
+	return nil
 }
 
-func twitchStreamPresenceUpdate(s *dg.Session, m *dg.PresenceUpdate) {
-	log.Debug().Any("presence", m).Msg("Received presence update.")
+func twitchStreamPresenceUpdate(d EventData[dg.PresenceUpdate]) error {
+	log.Debug().Any("presence", d.Event).Msg("Received presence update.")
 
-	streamingRoleID, _ := config.TwitchLiveRoleID.Get(m.GuildID).Value()
-	channelID, _ := config.TwitchLiveChannelID.Get(m.GuildID).Value()
-	templateText, _ := config.TwitchLiveTemplate.Get(m.GuildID).Value()
+	streamingRoleID, _ := config.TwitchLiveRoleID.Get(d.Event.GuildID).Value()
+	channelID, _ := config.TwitchLiveChannelID.Get(d.Event.GuildID).Value()
+	templateText, _ := config.TwitchLiveTemplate.Get(d.Event.GuildID).Value()
 	if streamingRoleID == "" && channelID == "" {
-		return
+		return nil
 	}
 
 	// check if user is allowed to notify. If the role list is empty anyone can notify
-	if member, err := s.GuildMember(m.GuildID, m.User.ID); err != nil {
-		return
+	if member, err := d.Session.GuildMember(d.Event.GuildID, d.Event.User.ID); err != nil {
+		return err
 	} else {
-		eligibleRoleIDs, _ := config.TwitchLiveEligibleRoleIDs.Get(m.GuildID).Value()
+		eligibleRoleIDs, _ := config.TwitchLiveEligibleRoleIDs.Get(d.Event.GuildID).Value()
 		if len(eligibleRoleIDs) > 0 && lo.None(lo.Map(eligibleRoleIDs, func(id json.Number, _ int) string { return string(id) }), member.Roles) {
-			return
+			return nil
 		}
 	}
 
-	if m.Activities != nil {
-		for _, activity := range m.Activities {
+	if d.Event.Activities != nil {
+		for _, activity := range d.Event.Activities {
 			if activity.Type == dg.ActivityTypeStreaming {
 				if streamingRoleID != "" {
-					log.Info().Str("user", m.User.ID).Str("guild", m.GuildID).Msg("User is streaming, adding role")
-					s.GuildMemberRoleAdd(m.GuildID, m.User.ID, string(streamingRoleID))
+					log.Info().Str("user", d.Event.User.ID).Str("guild", d.Event.GuildID).Msg("User is streaming, adding role")
+					d.Session.GuildMemberRoleAdd(d.Event.GuildID, d.Event.User.ID, string(streamingRoleID))
 				}
 				if channelID != "" {
 					twitchChannel := activity.URL[22:]
@@ -92,24 +93,25 @@ func twitchStreamPresenceUpdate(s *dg.Session, m *dg.PresenceUpdate) {
 							log.Error().Str("channel", twitchChannel).Err(err).Msg("Failed to get stream info")
 							return
 						} else if isNew {
-							content := i18n.TemplateString(lo.Must(template.New("twitch_live").Parse(templateText)), &i18n.Vars{"user": m.User.Mention()})
+							content := i18n.TemplateString(lo.Must(template.New("twitch_live").Parse(templateText)), &i18n.Vars{"user": d.Event.User.Mention()})
 							embed := generateStreamNotificationEmbed(&stream)
-							log.Info().Str("user", userID).Str("twitch", twitchChannel).Str("discordChanne", channelID).Msg("Sending stream notification")
-							s.ChannelMessageSendComplex(channelID, &dg.MessageSend{Content: content, Embed: embed})
+							log.Info().Str("user", d.Event.User.ID).Str("twitch", twitchChannel).Str("discordChanne", channelID).Msg("Sending stream notification")
+							d.Session.ChannelMessageSendComplex(channelID, &dg.MessageSend{Content: content, Embed: embed})
 						} else {
 							log.Debug().Str("channel", twitchChannel).Msg("Stream is not new, skipping notification")
 						}
-					}(twitchChannel, string(channelID), m.User.ID)
+					}(twitchChannel, string(channelID), d.Event.User.ID)
 				}
-				return
+				return nil
 			}
 		}
 		// none of the activities are streaming
 		if streamingRoleID != "" {
-			log.Info().Str("user", m.User.ID).Msg("User is not streaming, removing role")
-			s.GuildMemberRoleRemove(m.GuildID, m.User.ID, string(streamingRoleID))
+			log.Info().Str("user", d.Event.User.ID).Msg("User is not streaming, removing role")
+			d.Session.GuildMemberRoleRemove(d.Event.GuildID, d.Event.User.ID, string(streamingRoleID))
 		}
 	}
+	return nil
 }
 
 func generateStreamNotificationEmbed(stream *helix.Stream) *dg.MessageEmbed {

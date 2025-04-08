@@ -463,3 +463,15 @@ admin:
   config:
     reload:
       success: "Configuration reloaded successfully."
+chat:
+  cooldown:
+    - "Yip! Too fast! Gimme a sec to catch my breath, floofster."
+    - "Hold your tail, I'm still recharging my squeaky energy!"
+    - "Whoa there, speedy paws! Cooldown's still ticking."
+    - "Paw-lease! I'm still recovering from the last chat zoomies."
+    - "Flop! I need a nap before I can yap again."
+    - "You're gonna wear my little toe beans out! Give it a moment!"
+    - "Eep! My words are still on cooldown—try again in a bit, cutie!"
+    - "My tail’s still wagging from the last convo—hang tight!"
+    - "Not so fast, chatter-pup! I need a sec to fluff up again."
+    - "Huff huff... lemme catch my breath before we bark some more!"
