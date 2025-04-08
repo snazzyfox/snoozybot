@@ -82,7 +82,7 @@ func twitchStreamPresenceUpdate(d EventData[dg.PresenceUpdate]) error {
 		for _, activity := range d.Event.Activities {
 			if activity.Type == dg.ActivityTypeStreaming {
 				if streamingRoleID != "" {
-					log.Info().Str("user", d.Event.User.ID).Str("guild", d.Event.GuildID).Msg("User is streaming, adding role")
+					log.Debug().Str("user", d.Event.User.ID).Str("guild", d.Event.GuildID).Msg("User is streaming, adding role")
 					d.Session.GuildMemberRoleAdd(d.Event.GuildID, d.Event.User.ID, string(streamingRoleID))
 				}
 				if channelID != "" {
@@ -107,7 +107,7 @@ func twitchStreamPresenceUpdate(d EventData[dg.PresenceUpdate]) error {
 		}
 		// none of the activities are streaming
 		if streamingRoleID != "" {
-			log.Info().Str("user", d.Event.User.ID).Msg("User is not streaming, removing role")
+			log.Debug().Str("user", d.Event.User.ID).Msg("User is not streaming, removing role")
 			d.Session.GuildMemberRoleRemove(d.Event.GuildID, d.Event.User.ID, string(streamingRoleID))
 		}
 	}
