@@ -80,7 +80,7 @@ func twitchStreamPresenceUpdate(d EventData[dg.PresenceUpdate]) error {
 
 	if d.Event.Activities != nil {
 		for _, activity := range d.Event.Activities {
-			if activity.Type == dg.ActivityTypeStreaming {
+			if activity.Type == dg.ActivityTypeStreaming && strings.HasPrefix(activity.URL, "https://www.twitch.tv/") {
 				if streamingRoleID != "" {
 					log.Debug().Str("user", d.Event.User.ID).Str("guild", d.Event.GuildID).Msg("User is streaming, adding role")
 					d.Session.GuildMemberRoleAdd(d.Event.GuildID, d.Event.User.ID, string(streamingRoleID))
