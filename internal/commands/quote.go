@@ -41,7 +41,7 @@ var quote = BotCommand{
 }
 
 var quotes = BotCommand{
-	ApplicationCommand: dg.ApplicationCommand{Name: "quotes"},
+	ApplicationCommand: dg.ApplicationCommand{Name: "quotes", DefaultMemberPermissions: &CommandPermissionModeratorOnly},
 	Subcommands: []*BotCommand{
 		&quotesGet,
 		&quotesAdd,

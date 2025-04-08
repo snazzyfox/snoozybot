@@ -6,7 +6,8 @@ import (
 
 var echo = BotCommand{
 	ApplicationCommand: dg.ApplicationCommand{
-		Name: "echo",
+		Name:                     "echo",
+		DefaultMemberPermissions: &CommandPermissionAdminOnly,
 		Options: []*dg.ApplicationCommandOption{
 			{Name: "text", Type: dg.ApplicationCommandOptionString, Required: true},
 		},

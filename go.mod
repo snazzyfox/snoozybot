@@ -8,6 +8,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/markusmobius/go-dateparser v1.2.3
 	github.com/nicklaw5/helix/v2 v2.31.1
+	github.com/openai/openai-go v0.1.0-beta.7
 	github.com/samber/lo v1.49.1
 	github.com/vitaliy-art/gorm-zerolog v1.2.0
 	google.golang.org/api v0.228.0
@@ -52,7 +53,6 @@ require (
 	github.com/multiformats/go-multibase v0.2.0 // indirect
 	github.com/multiformats/go-multihash v0.2.3 // indirect
 	github.com/multiformats/go-varint v0.0.7 // indirect
-	github.com/openai/openai-go v0.1.0-beta.7 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/polydawn/refmt v0.89.1-0.20221221234430-40501e09de1f // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect

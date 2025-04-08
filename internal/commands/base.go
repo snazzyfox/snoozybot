@@ -10,6 +10,9 @@ import (
 	"github.com/samber/lo"
 )
 
+var CommandPermissionAdminOnly = int64(0)
+var CommandPermissionModeratorOnly = int64(dg.PermissionManageMessages)
+
 type CommandData struct {
 	*dg.Session
 	*dg.InteractionCreate

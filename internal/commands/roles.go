@@ -16,8 +16,9 @@ import (
 
 var assignTempRole = BotCommand{
 	ApplicationCommand: dg.ApplicationCommand{
-		Name: "Assign Temporary Role",
-		Type: dg.UserApplicationCommand,
+		Name:                     "Assign Temporary Role",
+		Type:                     dg.UserApplicationCommand,
+		DefaultMemberPermissions: &CommandPermissionModeratorOnly,
 	},
 	CommandHandler: func(cd *CommandData) error {
 		target := cd.ApplicationCommandData().TargetID
@@ -74,8 +75,9 @@ var assignTempRole = BotCommand{
 
 var assignRegularsRole = BotCommand{
 	ApplicationCommand: dg.ApplicationCommand{
-		Name: "Assign Regulars Role",
-		Type: dg.UserApplicationCommand,
+		Name:                     "Assign Regulars Role",
+		Type:                     dg.UserApplicationCommand,
+		DefaultMemberPermissions: &CommandPermissionModeratorOnly,
 	},
 	CommandHandler: func(cd *CommandData) error {
 		if cd.Member.Permissions&dg.PermissionManageMessages == 0 {

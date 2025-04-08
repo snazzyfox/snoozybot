@@ -7,7 +7,7 @@ import (
 )
 
 var admin = BotCommand{
-	ApplicationCommand: dg.ApplicationCommand{Name: "admin"},
+	ApplicationCommand: dg.ApplicationCommand{Name: "admin", DefaultMemberPermissions: &CommandPermissionAdminOnly},
 	Subcommands: []*BotCommand{
 		&adminConfig,
 	},
