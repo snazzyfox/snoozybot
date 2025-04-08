@@ -95,7 +95,7 @@ func twitchStreamPresenceUpdate(d EventData[dg.PresenceUpdate]) error {
 						} else if isNew {
 							content := i18n.TemplateString(lo.Must(template.New("twitch_live").Parse(templateText)), &i18n.Vars{"user": d.Event.User.Mention()})
 							embed := generateStreamNotificationEmbed(&stream)
-							log.Info().Str("user", d.Event.User.ID).Str("twitch", twitchChannel).Str("discordChanne", channelID).Msg("Sending stream notification")
+							log.Info().Str("user", d.Event.User.ID).Str("twitch", twitchChannel).Str("channel", channelID).Msg("Sending stream notification")
 							d.Session.ChannelMessageSendComplex(channelID, &dg.MessageSend{Content: content, Embed: embed})
 						} else {
 							log.Debug().Str("channel", twitchChannel).Msg("Stream is not new, skipping notification")

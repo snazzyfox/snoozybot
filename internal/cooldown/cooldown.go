@@ -34,12 +34,12 @@ func Initialize(cm CooldownManager) *CooldownManager {
 func (cm *CooldownManager) Can(guildId string, channelId string, member *dg.Member) bool {
 	// Skip for moderators
 	if member.Permissions&dg.PermissionManageMessages != 0 {
-		log.Debug().Str("guildId", guildId).Str("channelId", channelId).Msg("Skipping cooldown for moderator")
+		log.Debug().Str("guild_id", guildId).Str("channel_id", channelId).Msg("Skipping cooldown for moderator")
 		return true
 	}
 
 	if exempt, err := config.CooldownExemptChannels.Get(guildId).Value(); err == nil {
-		log.Debug().Str("guildId", guildId).Str("channelId", channelId).Msg("Skipping cooldown for exempt channel")
+		log.Debug().Str("guild_id", guildId).Str("channel_id", channelId).Msg("Skipping cooldown for exempt channel")
 		return slices.Contains(exempt, json.Number(channelId))
 	}
 

@@ -111,10 +111,10 @@ func Get(lang dg.Locale, key string, vars ...*Vars) string {
 	var opt *template.Template
 	if opts := response[key][lang]; len(opts) == 0 {
 		if lang != defaultLang {
-			log.Warn().Str("key", key).Str("Locale", string(lang)).Msg("Translation not available, falling back to default locale.")
+			log.Warn().Str("key", key).Str("locale", string(lang)).Msg("Translation not available, falling back to default locale.")
 			return Get(defaultLang, key)
 		} else {
-			log.Error().Str("key", key).Str("Locale", string(lang)).Msg("String not available in any languages. Returning key as-is!")
+			log.Error().Str("key", key).Str("locale", string(lang)).Msg("String not available in any languages. Returning key as-is!")
 			return key
 		}
 	} else if len(opts) == 1 {

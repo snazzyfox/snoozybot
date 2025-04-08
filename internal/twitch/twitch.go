@@ -119,7 +119,7 @@ func AttemptGetStream(login string) (stream helix.Stream, isNew bool, err error)
 	isNew = lastKnownStreamIDs[login] != stream.ID
 	cache.Add(login, CachedStream{stream, isNew})
 	lastKnownStreamIDs[login] = stream.ID
-	log.Debug().Str("login", login).Str("streamID", stream.ID).Str("lastKnown", lastKnownStreamIDs[login]).Msg("Got stream")
+	log.Debug().Str("login", login).Str("stream_id", stream.ID).Str("last_known", lastKnownStreamIDs[login]).Msg("Got stream")
 	return stream, isNew, nil
 }
 
