@@ -11,7 +11,7 @@ require (
 	github.com/openai/openai-go v0.1.0-beta.10
 	github.com/samber/lo v1.49.1
 	github.com/vitaliy-art/gorm-zerolog v1.2.0
-	google.golang.org/api v0.229.0
+	google.golang.org/api v0.230.0
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/datatypes v1.2.5
 	gorm.io/gorm v1.25.12
@@ -73,7 +73,7 @@ require (
 	golang.org/x/oauth2 v0.29.0 // indirect
 	golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250414145226-207652e42e2e // indirect
-	google.golang.org/grpc v1.71.1 // indirect
+	google.golang.org/grpc v1.72.0 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 	lukechampine.com/blake3 v1.4.0 // indirect
 )
