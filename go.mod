@@ -4,7 +4,7 @@ go 1.24.1
 
 require (
 	github.com/bluesky-social/indigo v0.0.0-20250502213949-67e958259b31
-	github.com/bwmarrin/discordgo v0.28.2-0.20250330110404-5571950c905f
+	github.com/bwmarrin/discordgo v0.29.0
 	github.com/joho/godotenv v1.5.1
 	github.com/markusmobius/go-dateparser v1.2.4
 	github.com/nicklaw5/helix/v2 v2.31.1
