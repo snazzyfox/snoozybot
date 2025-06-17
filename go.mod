@@ -9,7 +9,7 @@ require (
 	github.com/markusmobius/go-dateparser v1.2.4
 	github.com/nicklaw5/helix/v2 v2.31.1
 	github.com/openai/openai-go v1.5.0
-	github.com/samber/lo v1.50.0
+	github.com/samber/lo v1.51.0
 	github.com/vitaliy-art/gorm-zerolog v1.2.0
 	google.golang.org/api v0.237.0
 	gopkg.in/yaml.v3 v3.0.1
