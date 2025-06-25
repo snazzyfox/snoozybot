@@ -11,7 +11,7 @@ require (
 	github.com/openai/openai-go v1.5.0
 	github.com/samber/lo v1.51.0
 	github.com/vitaliy-art/gorm-zerolog v1.2.0
-	google.golang.org/api v0.237.0
+	google.golang.org/api v0.239.0
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/datatypes v1.2.5
 	gorm.io/gorm v1.30.0
