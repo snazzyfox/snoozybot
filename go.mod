@@ -8,7 +8,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/markusmobius/go-dateparser v1.2.4
 	github.com/nicklaw5/helix/v2 v2.31.1
-	github.com/openai/openai-go v1.8.2
+	github.com/openai/openai-go v1.11.1
 	github.com/samber/lo v1.51.0
 	github.com/vitaliy-art/gorm-zerolog v1.2.0
 	google.golang.org/api v0.239.0
