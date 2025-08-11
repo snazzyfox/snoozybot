@@ -23,7 +23,7 @@ jobs:
     needs: [build]
     if: github.repository_id == '390957198' && github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: snoozybot
       - uses: up9cloud/action-rsync@v1.4
