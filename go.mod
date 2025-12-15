@@ -1,6 +1,6 @@
 module snoozybot
 
-go 1.24.1
+go 1.25
 
 require (
 	github.com/bluesky-social/indigo v0.0.0-20250529020053-c28d3a9a018d
