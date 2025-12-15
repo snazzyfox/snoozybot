@@ -7,7 +7,7 @@ require (
 	github.com/bwmarrin/discordgo v0.29.0
 	github.com/joho/godotenv v1.5.1
 	github.com/markusmobius/go-dateparser v1.2.4
-	github.com/nicklaw5/helix/v2 v2.31.1
+	github.com/nicklaw5/helix/v2 v2.32.0
 	github.com/openai/openai-go/v2 v2.7.1
 	github.com/samber/lo v1.52.0
 	github.com/vitaliy-art/gorm-zerolog v1.2.0
