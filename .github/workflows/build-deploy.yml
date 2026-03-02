@@ -16,7 +16,7 @@ jobs:
         go-version: 1.25
     - run: go get .
     - run: go build -o build/snoozybot .
-    - uses: actions/upload-artifact@v6
+    - uses: actions/upload-artifact@v7
       with:
         name: snoozybot
         path: build/snoozybot
