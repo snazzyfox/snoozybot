@@ -1,6 +1,7 @@
 package events
 
 var Events = []any{
+	createEventHandler("automod", automodMessageCreate),
 	createEventHandler("bedtime", bedtimeHandler),
 	createEventHandler("memberLeaveCleanup", memberLeaveCleanup),
 	createEventHandler("twitchStreamGuildAvailable", twitchStreamGuildAvailable),

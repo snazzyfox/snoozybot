@@ -51,7 +51,7 @@ func (c *rollingCache[T]) GetAll() []T {
 
 var chatCaches = map[string]*rollingCache[*dg.Message]{}
 
-func addMessage(channelID string, message *dg.Message) {
+func chatAddMessage(channelID string, message *dg.Message) {
 	cache, ok := chatCaches[channelID]
 	if !ok {
 		cache = &rollingCache[*dg.Message]{
@@ -73,7 +73,7 @@ func chatMessageCreate(d EventData[dg.MessageCreate]) error {
 
 	// Chat functionality is enabled. Add the message to cache here.
 	d.Logger.Trace().Str("guild_id", d.Event.GuildID).Str("channel_id", d.Event.ChannelID).Str("user_id", d.Event.Author.ID).Msg("Adding message to AI chat cache.")
-	addMessage(d.Event.ChannelID, d.Event.Message)
+	chatAddMessage(d.Event.ChannelID, d.Event.Message)
 
 	if d.Event.Author.Bot ||
 		d.Event.Mentions == nil ||
@@ -127,7 +127,7 @@ func chatMessageCreate(d EventData[dg.MessageCreate]) error {
 		})
 		history = chatCaches[d.Event.ChannelID].GetAll()
 	}
-	response, err := getAIResponse(prompt, history, d.Logger)
+	response, err := getChatAIResponse(prompt, history, d.Logger)
 	if err != nil {
 		return err
 	}
@@ -139,7 +139,7 @@ func chatMessageCreate(d EventData[dg.MessageCreate]) error {
 	return nil
 }
 
-func getAIResponse(prompt string, history []*dg.Message, log *zerolog.Logger) (string, error) {
+func getChatAIResponse(prompt string, history []*dg.Message, log *zerolog.Logger) (string, error) {
 	prompt += "\n\nThe message contains the most recent conversations in the channel for context. Respond only to the last message."
 	messagePrompt := strings.Join(lo.Map(history, func(message *dg.Message, _ int) string {
 		if message != nil {

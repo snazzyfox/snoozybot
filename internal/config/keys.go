@@ -39,4 +39,9 @@ const (
 
 	ChatRoleIDs GuildConfig[[]json.Number] = "chat.role_ids"
 	ChatPrompts GuildConfig[[]string]      = "chat.prompts"
+
+	AutomodIncludeChannelIDs GuildConfig[[]json.Number] = "automod.only_channel_ids"
+	AutomodIgnoreChannelIDs  GuildConfig[[]json.Number] = "automod.ignore_channel_ids"
+	AutomodRulePrompts       GuildConfig[[]string]      = "automod.rule_prompts"
+	AutomodLogChannelID      GuildConfig[json.Number]   = "automod.log_channel_id"
 )
