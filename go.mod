@@ -8,7 +8,7 @@ require (
 	github.com/invopop/jsonschema v0.13.0
 	github.com/joho/godotenv v1.5.1
 	github.com/markusmobius/go-dateparser v1.2.4
-	github.com/nicklaw5/helix/v2 v2.32.0
+	github.com/nicklaw5/helix/v2 v2.34.0
 	github.com/openai/openai-go/v2 v2.7.1
 	github.com/samber/lo v1.53.0
 	github.com/vitaliy-art/gorm-zerolog v1.2.0
