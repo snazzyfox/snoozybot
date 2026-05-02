@@ -394,7 +394,7 @@ admin:
     reload:
       success: "Configuración recargada exitosamente."
 chat:
-  cooldown:
+  spamCooldown:
     - "¡Guau! Vas demasiado rápido — estás en cooldown. Espera un poco o usa el canal bot-spam."
     - "¡Quieto, lomito veloz! Llegaste al límite. Si quieres seguir, ve a bot-spam."
     - "¡Uff! Estás bajo enfriamiento. Corre al canal bot-spam si no quieres esperar."
@@ -405,3 +405,14 @@ chat:
     - "¡Huff! Has alcanzado el límite. El canal bot-spam es todo tuyo si quieres seguir."
     - "¡Tiempo fuera, esponjoso! Ve a bot-spam para seguir jugando."
     - "¡Uf, qué velocidad! Toca esperar. El canal bot-spam está perfecto para ti."
+  dailyCooldown:
+    - "Ya alcanzaste tu límite diario, furamigo. Date un descanso y relájate un rato 🐾"
+    - "¡Boop! Hasta aquí por hoy. Ve a recargar patitas y tómalo con calma."
+    - "No más chats por ahora, floof. Estírate, hidrátate y descansa."
+    - "Llegaste al tope de hoy. Hasta los zorritos necesitan pausa."
+    - "Medidor de chat vacío. Hora de una siestita o solo vibear tranquilo."
+    - "Eso es todo por hoy, colita feliz. Relájate y vuelve luego."
+    - "Límite alcanzado. Toca relajarse—quizá un snack y chill, furriend."
+    - "Tus chats de hoy se acabaron. Respira y disfruta la calma."
+    - "¡Sin chats por hoy! Acomodar la guarida y descansar."
+    - "Fin del chat por hoy. Descansa esas patitas y regresa luego."

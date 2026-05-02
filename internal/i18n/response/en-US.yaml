@@ -464,7 +464,7 @@ admin:
     reload:
       success: "Configuration reloaded successfully."
 chat:
-  cooldown:
+  spamCooldown:
     - "Yip! You're a little too speedy — I'm rate-limiting you. Try again soon, or head to the bot-spam channel!"
     - "Whoa there, zoomie paws! You're hitting the cooldown. Pop over to the bot-spam channel if you can't wait!"
     - "Hold your fluff! You've hit my cooldown timer. You can keep playing in the bot-spam channel though!"
@@ -475,3 +475,14 @@ chat:
     - "Eep! You've been rate-limited for now! Wanna keep going? Head over to the bot-spam channel!"
     - "Snuggle break! You're on cooldown. Bot-spam channel is wide open if you’re still hyped!"
     - "Timeout for you, fluffy! Cooldown active. The bot-spam channel is always ready for more zoomies!"
+  dailyCooldown:
+    - "You've hit your daily chat limit, flufffriend. Time to curl up and relax a bit."
+    - "Gosh I'm so tired. Go recharge those paws and take it easy for the rest of the day."
+    - "So eepy. I need to sleep for the night. Maybe Stretch, hydrate, and enjoy a cozy break too?"
+    - "You've reached today's cap. Even the busiest fox needs downtime."
+    - "Chat meter empty! Go nap in a sunbeam or vibe for a while. I'll be back for you in a day."
+    - "That's all for today, tail-wagger. Relax and come back refreshed later."
+    - "Limit reached. Time to unwind—maybe grab a snack and chill, furriend."
+    - "Your daily chats are used up. Take a breather and enjoy some calm vibes."
+    - "All out of chats today! Go fluff up your den and rest a bit."
+    - "You've reached the end of today's chatting. Relax those beans and come back later."

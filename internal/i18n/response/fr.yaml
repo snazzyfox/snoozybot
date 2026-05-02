@@ -396,7 +396,7 @@ admin:
     reload:
       success: "Configuration rechargée avec succès."
 chat:
-  cooldown:
+  spamCooldown:
     - "Oups ! Tu es trop rapide — tu es en délai d’attente. Reviens plus tard ou va dans le canal bot-spam !"
     - "Minute, petit lynx ! Tu touches la limite. Tu peux continuer dans le canal bot-spam si tu veux !"
     - "Wouf ! T'es en cooldown ! Si t'es pressé, le canal bot-spam t'attend !"
@@ -407,3 +407,14 @@ chat:
     - "Flop ! J'ai besoin d'une pause. Utilise le canal bot-spam si tu veux papoter encore !"
     - "Mon museau est en cooldown ! Mais tu peux filer dans bot-spam pour t’amuser plus !"
     - "Arrête-toi là, renardeau ! La limite est atteinte. Direction bot-spam pour continuer !"
+  dailyCooldown:
+    - "T'as atteint ta limite pour aujourd'hui, flufffriend. Détends-toi un peu 🐾"
+    - "Boop ! C'est fini pour aujourd'hui. Va recharger tes petites pattes."
+    - "Plus de chats pour l'instant, floof. Prends une pause et respire."
+    - "Limite atteinte. Même les renards ont besoin de repos."
+    - "Jauge de chat vide. File te poser et te relaxer."
+    - "C'est tout pour aujourd'hui, boule de poils. Reviens plus tard."
+    - "Stop pour aujourd'hui. Un snack, du chill, et ça repartira demain."
+    - "Tes messages du jour sont finis. Profite d'un moment calme."
+    - "Plus de chats ! Va te rouler en boule et te reposer."
+    - "Fin des discussions pour aujourd'hui. Repose-toi et reviens après."

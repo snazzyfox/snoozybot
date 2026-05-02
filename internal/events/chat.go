@@ -26,10 +26,15 @@ var defaultPrompt string
 
 var client = openai.NewClient(option.WithAPIKey(lo.Must(os.LookupEnv("OPENAI_API_KEY"))))
 
-var cdm = cooldown.Initialize(cooldown.CooldownManager{
+var cdmSpam = cooldown.Initialize(cooldown.CooldownManager{
 	UserInvocations:    2,
 	ChannelInvocations: 5,
 	CooldownDuration:   time.Minute * 3,
+})
+
+var cdmDaily = cooldown.Initialize(cooldown.CooldownManager{
+	UserInvocations:  15,
+	CooldownDuration: time.Hour * 24,
 })
 
 const CACHE_CAPACITY = 10
@@ -83,15 +88,25 @@ func chatMessageCreate(d EventData[dg.MessageCreate]) error {
 
 	d.Logger.Trace().Str("guild_id", d.Event.GuildID).Str("channel_id", d.Event.ChannelID).Str("user_id", d.Event.Author.ID).Msg("User mentioned bot. Attempting AI response.")
 	d.Event.Member.User = d.Event.Author
-	if !cdm.Can(d.Event.GuildID, d.Event.ChannelID, d.Event.Member) {
+	if !cdmSpam.Can(d.Event.GuildID, d.Event.ChannelID, d.Event.Member) {
 		guild, _ := d.Session.Guild(d.Event.GuildID)
-		d.Session.ChannelMessageSendReply(d.Event.ChannelID, i18n.Get(dg.Locale(guild.PreferredLocale), "chat.cooldown"), &dg.MessageReference{
+		d.Session.ChannelMessageSendReply(d.Event.ChannelID, i18n.Get(dg.Locale(guild.PreferredLocale), "chat.spamCooldown"), &dg.MessageReference{
 			MessageID: d.Event.Message.ID,
 			ChannelID: d.Event.ChannelID,
 			GuildID:   d.Event.GuildID,
 		})
 		return nil
 	}
+	if !cdmDaily.Can(d.Event.GuildID, d.Event.ChannelID, d.Event.Member) {
+		guild, _ := d.Session.Guild(d.Event.GuildID)
+		d.Session.ChannelMessageSendReply(d.Event.ChannelID, i18n.Get(dg.Locale(guild.PreferredLocale), "chat.dailyCooldown"), &dg.MessageReference{
+			MessageID: d.Event.Message.ID,
+			ChannelID: d.Event.ChannelID,
+			GuildID:   d.Event.GuildID,
+		})
+		return nil
+	}
+
 	var prompt string
 	var history []*dg.Message
 	if len(roleIDs) > 0 && lo.None(lo.Map(roleIDs, func(id json.Number, _ int) string { return string(id) }), d.Event.Member.Roles) {
