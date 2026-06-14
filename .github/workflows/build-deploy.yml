@@ -30,12 +30,20 @@ jobs:
       - uses: actions/download-artifact@v8
         with:
           name: snoozybot
-      - uses: up9cloud/action-rsync@v1.4
-        env:
-          HOST: ${{ vars.DEPLOY_HOST }}
-          PORT: ${{ vars.DEPLOY_PORT }}
-          USER: ${{ vars.DEPLOY_USER }}
-          KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
-          TARGET: snoozybot/
-          ARGS_MORE: --exclude '/.env' --chmod=Fu=rwx
-          POST_SCRIPT: sudo systemctl restart snoozybot.service
+      - uses: appleboy/scp-action@v1
+        with:
+          host: ${{ vars.DEPLOY_HOST }}
+          port: ${{ vars.DEPLOY_PORT }}
+          username: ${{ vars.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          source: "snoozybot"
+          target: ${{ vars.DEPLOY_TARGET }}
+      - uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ vars.DEPLOY_HOST }}
+          port: ${{ vars.DEPLOY_PORT }}
+          username: ${{ vars.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          script: |
+            chmod +x "${{ vars.DEPLOY_TARGET }}/snoozybot"
+            sudo systemctl restart snoozybot.service
