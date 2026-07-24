@@ -11,9 +11,9 @@ import (
 
 	dg "github.com/bwmarrin/discordgo"
 	"github.com/invopop/jsonschema"
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/responses"
-	"github.com/openai/openai-go/v2/shared"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+	"github.com/openai/openai-go/v3/shared"
 )
 
 //go:embed automod.header.txt
@@ -112,7 +112,7 @@ func automodGetAIResponse(d EventData[dg.MessageCreate], rulePrompts []string) (
 	prompt := headerPrompt + "\n" + strings.Join(rulePrompts, "\n")
 	d.Logger.Debug().Str("system", prompt).Str("message", d.Event.Content).Msg("Sending message to AI Automod.")
 	resp, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:           openai.ChatModelGPT5Mini,
+		Model:           openai.ChatModelGPT5_4Mini,
 		Instructions:    openai.String(prompt),
 		Input:           responses.ResponseNewParamsInputUnion{OfString: openai.String(d.Event.Content)},
 		MaxOutputTokens: openai.Int(300),
