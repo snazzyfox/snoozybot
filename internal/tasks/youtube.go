@@ -71,7 +71,7 @@ var youtubeNotificationTask = PeriodicTask{
 				// Get youtube videos
 				ctx.Logger.Debug().Str("guild_id", guildId).Str("playlist", playlist).Msg("Checking for new Youtube videos.")
 
-				videos, err := yt.List([]string{"snippet", "contentDetails", "status"}).PlaylistId(playlist).MaxResults(5).Do()
+				videos, err := yt.List([]string{"snippet", "contentDetails", "status"}).PlaylistId(playlist).MaxResults(20).Do()
 				if err != nil {
 					ctx.Logger.Error().Err(err).Str("guild_id", guildId).Str("channel_id", playlist).Msg("Failed to get Youtube videos")
 					continue
@@ -83,7 +83,7 @@ var youtubeNotificationTask = PeriodicTask{
 					return video.Status.PrivacyStatus == "public"
 				})
 				if len(publicVideos) == 0 {
-					ctx.Logger.Warn().Str("guild_id", guildId).Str("youtube_channel_id", playlist).Msg("Youtube query returned no videos.")
+					ctx.Logger.Warn().Str("guild_id", guildId).Str("youtube_channel_id", playlist).Msg("Youtube query returned no videos. Are all new videos private?")
 					continue
 				}
 				latestVideoPublishedAt, err := time.Parse(time.RFC3339, publicVideos[0].Snippet.PublishedAt)
