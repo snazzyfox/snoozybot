@@ -8,6 +8,7 @@ import (
 	"sync"
 
 	dg "github.com/bwmarrin/discordgo"
+	"github.com/gorilla/websocket"
 	"github.com/rs/zerolog/log"
 	"github.com/samber/lo"
 )
@@ -57,8 +58,17 @@ func (bm *BotManager) Start() {
 		go func() {
 			defer bm.wg.Done()
 
+			bot.Identify.Intents = dg.IntentsAll
 			if err := bot.Open(); err != nil {
-				log.Panic().Err(err).Str("tokenStartsWith", bot.Identify.Token[4:10]).Msg("Failed to start gateway client")
+				tokenPrefix := bot.Identify.Token[4:10] // safe to print: first part of token indicates app
+				if websocket.IsCloseError(err, 4014) {
+					log.Info().Err(err).Str("tokenStartsWith", tokenPrefix).Msg("Discord rejected privileged intents; retrying without")
+					bot.Identify.Intents = dg.IntentsAllWithoutPrivileged
+					err = bot.Open()
+				}
+				if err != nil {
+					log.Panic().Err(err).Str("tokenStartsWith", tokenPrefix).Msg("Failed to start gateway client")
+				}
 			}
 
 			<-bm.stop // wait for signal from main to stop the bot
@@ -84,8 +94,6 @@ func createBot(token string, guilds []string, ready *sync.WaitGroup) *dg.Session
 	if err != nil {
 		logger.Panic().Err(err).Strs("guilds", guilds).Msg("Failed to start bot")
 	}
-
-	bot.Identify.Intents = dg.IntentsAll
 
 	// Bot onInteraction
 	bot.AddHandler(func(s *dg.Session, i *dg.InteractionCreate) {
