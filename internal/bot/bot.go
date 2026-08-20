@@ -58,7 +58,7 @@ func (bm *BotManager) Start() {
 			defer bm.wg.Done()
 
 			if err := bot.Open(); err != nil {
-				log.Panic().Err(err).Msg("Failed to start gateway client")
+				log.Panic().Err(err).Str("tokenStartsWith", bot.Identify.Token[4:10]).Msg("Failed to start gateway client")
 			}
 
 			<-bm.stop // wait for signal from main to stop the bot

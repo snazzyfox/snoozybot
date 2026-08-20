@@ -94,6 +94,8 @@ User=snoozybot
 Group=snoozybot
 Restart=always
 RestartSec=15
+RestartMaxDelaySec=120
+RestartSteps=5
 KillSignal=SIGTERM
 
 [Install]
