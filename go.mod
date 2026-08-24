@@ -9,7 +9,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/markusmobius/go-dateparser v1.2.4
 	github.com/nicklaw5/helix/v2 v2.34.0
-	github.com/openai/openai-go/v3 v3.50.0
+	github.com/openai/openai-go/v3 v3.52.0
 	github.com/samber/lo v1.53.0
 	github.com/vitaliy-art/gorm-zerolog v1.2.0
 	google.golang.org/api v0.293.0
@@ -88,7 +88,7 @@ require (
 	filippo.io/edwards25519 v1.1.1 // indirect
 	github.com/go-sql-driver/mysql v1.9.3 // indirect
 	github.com/google/uuid v1.6.0 // indirect
-	github.com/gorilla/websocket v1.5.3 // indirect
+	github.com/gorilla/websocket v1.5.3
 	github.com/hablullah/go-hijri v1.0.2 // indirect
 	github.com/hablullah/go-juliandays v1.0.0 // indirect
 	github.com/hashicorp/golang-lru/v2 v2.0.7
