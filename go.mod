@@ -1,6 +1,6 @@
 module snoozybot
 
-go 1.26
+go 1.26.7
 
 require (
 	github.com/bluesky-social/indigo v0.0.0-20250529020053-c28d3a9a018d
@@ -11,7 +11,7 @@ require (
 	github.com/nicklaw5/helix/v2 v2.34.0
 	github.com/openai/openai-go/v3 v3.56.0
 	github.com/samber/lo v1.53.0
-	github.com/vitaliy-art/gorm-zerolog v1.2.0
+	github.com/vitaliy-art/gorm-zerolog v1.3.0
 	google.golang.org/api v0.293.0
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/datatypes v1.2.7
@@ -99,8 +99,8 @@ require (
 	github.com/jalaali/go-jalaali v0.0.0-20250521085720-bf793ab67800 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	github.com/mattn/go-colorable v0.1.14 // indirect
-	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/mattn/go-colorable v0.1.15 // indirect
+	github.com/mattn/go-isatty v0.0.24 // indirect
 	github.com/rs/zerolog v1.35.1
 	github.com/tetratelabs/wazero v1.9.0 // indirect
 	github.com/wasilibs/go-re2 v1.10.0 // indirect
