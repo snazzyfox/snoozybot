@@ -112,5 +112,5 @@ require (
 	golang.org/x/sys v0.47.0 // indirect
 	golang.org/x/text v0.41.0 // indirect
 	gorm.io/driver/mysql v1.6.0 // indirect
-	gorm.io/driver/postgres v1.6.2 // direct
+	gorm.io/driver/postgres v1.6.3 // direct
 )
