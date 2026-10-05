@@ -159,8 +159,8 @@ github.com/multiformats/go-varint v0.0.7 h1:sWSGR+f/eu5ABZA2ZpYKBILXTTs9JWpdEM/n
 github.com/multiformats/go-varint v0.0.7/go.mod h1:r8PUYw/fD/SjBCiKOoDlGF6QawOELpZAu9eioSos/OU=
 github.com/nicklaw5/helix/v2 v2.34.0 h1:mdio9Wm+TQIjuJ199myvcKEcAmHiqigHsZlG1fDaPIE=
 github.com/nicklaw5/helix/v2 v2.34.0/go.mod h1:KaXa2mb2kBzsDana9RbXevTgnfU95DMoSORWo2hqlWA=
-github.com/openai/openai-go/v3 v3.62.0 h1:P3G1Ip9eOwCJxg2q1lPBFg7iuyDEJDuoqQinzZDaxJM=
-github.com/openai/openai-go/v3 v3.62.0/go.mod h1:dE39tezpSvL+SHpkZQm7XhSc8BOLDzu8CEh1mHc9MzU=
+github.com/openai/openai-go/v3 v3.70.0 h1:mfYOmcoTJeb/hTcZUyKelluNnb1ApkziYg/Li8afZTQ=
+github.com/openai/openai-go/v3 v3.70.0/go.mod h1:+dSPa+nbX+dNoXg1jecMnVpgRP+E/5IBA6Jiz9Pc8WM=
 github.com/opentracing/opentracing-go v1.2.0 h1:uEJPy/1a5RIPAJ0Ov+OIO8OxWu77jEv+1B0VhjKrZUs=
 github.com/opentracing/opentracing-go v1.2.0/go.mod h1:GxEUsuufX4nBwe+T+Wl9TAgYrxe9dPLANfrWvHYVTgc=
 github.com/pb33f/ordered-map/v2 v2.3.1 h1:5319HDO0aw4DA4gzi+zv4FXU9UlSs3xGZ40wcP1nBjY=
