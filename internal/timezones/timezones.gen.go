@@ -29,7 +29,6 @@ func main() {
 
 	for _, url := range []string{
 		"https://data.iana.org/time-zones/code/zone1970.tab",
-		"https://data.iana.org/time-zones/tzdb/backward",
 	} {
 		data := lo.Must(http.Get(url))
 		scanner := bufio.NewScanner(data.Body)
