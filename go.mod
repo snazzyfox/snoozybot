@@ -9,7 +9,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/markusmobius/go-dateparser v1.4.7
 	github.com/nicklaw5/helix/v2 v2.34.0
-	github.com/openai/openai-go/v3 v3.62.0
+	github.com/openai/openai-go/v3 v3.86.0
 	github.com/samber/lo v1.53.0
 	github.com/vitaliy-art/gorm-zerolog v1.3.0
 	google.golang.org/api v0.298.0
@@ -77,7 +77,7 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
 	go.yaml.in/yaml/v4 v4.0.0-rc.2 // indirect
-	golang.org/x/net v0.59.0 // indirect
+	golang.org/x/net v0.60.0 // indirect
 	golang.org/x/oauth2 v0.36.0 // indirect
 	golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260819154853-08b0e4226688 // indirect
