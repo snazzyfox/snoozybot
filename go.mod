@@ -7,7 +7,7 @@ require (
 	github.com/bwmarrin/discordgo v0.29.0
 	github.com/invopop/jsonschema v0.14.0
 	github.com/joho/godotenv v1.5.1
-	github.com/markusmobius/go-dateparser v1.4.7
+	github.com/markusmobius/go-dateparser v1.4.8
 	github.com/nicklaw5/helix/v2 v2.34.0
 	github.com/openai/openai-go/v3 v3.62.0
 	github.com/samber/lo v1.53.0
